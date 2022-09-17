@@ -1,10 +1,8 @@
 import { createRouter } from "../createRouter";
+import { userRouter } from "@/root/server/routes/user.router";
 
 export const appRouter = createRouter()
-  .query('hello', {
-    resolve: () => {
-      return 'hello from trpc server';
-    }
-  })
+  .merge('users.', userRouter)
+
 
 export type AppRouter = typeof appRouter;

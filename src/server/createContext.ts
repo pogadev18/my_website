@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-type createContextParams =  {
+import { prisma } from '@/root/utils/prisma';
+
+type createContextParams = {
   req: NextApiRequest,
   res: NextApiResponse
 }
@@ -8,7 +10,8 @@ type createContextParams =  {
 export function createContext({req, res}: createContextParams) {
   return {
     req,
-    res
+    res,
+    prisma
   }
 }
 

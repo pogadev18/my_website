@@ -13,3 +13,7 @@ export const requestOPTSchema = z.object({
 })
 
 export type requestOTPInput = z.TypeOf<typeof requestOPTSchema>;
+
+export const verifyOTPSchema = z.object({
+  hash: z.string()
+})

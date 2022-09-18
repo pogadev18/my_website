@@ -1,11 +1,16 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import * as trpc from '@trpc/server';
+import { serialize } from "cookie";
 
 import { createRouter } from "@/root/server/createRouter";
-import { createUserSchema, requestOPTSchema } from "@/root/schema/user.schema";
+import { createUserSchema, requestOPTSchema, verifyOTPSchema } from "@/root/schema/user.schema";
 
-import { CONFLICT, INTERNAL_SERVER_ERROR, NOT_FOUND } from "@/root/constants/errorCodes";
+import { CONFLICT, INTERNAL_SERVER_ERROR, NOT_FOUND, FORBIDDEN } from "@/root/constants/errorCodes";
 import { errorMessages } from "@/root/constants/errorMessages";
+import { baseUrl } from "@/root/constants/url";
+import { sendLoginEmail } from "@/root/utils/mailer";
+import { decode, encode } from "@/root/utils/base64";
+import { signJwt } from "@/root/utils/jwt";
 
 export const userRouter = createRouter()
   .mutation('register-user', {
@@ -66,7 +71,55 @@ export const userRouter = createRouter()
       })
 
       // send email
+      await sendLoginEmail({
+        email: user.email,
+        url: baseUrl,
+        token: encode(`${token.id}:${user.email}`)
+      });
 
       return true;
+    }
+  })
+  .query('verify-otp', {
+    input: verifyOTPSchema,
+    async resolve({ctx, input}) {
+      const {hash} = input;
+
+      // check the encode function in the 'request-otp' mutation
+      const decodedHash = decode(hash).split(':');
+      const [id, email] = decodedHash;
+
+      const token = await ctx.prisma.loginToken.findFirst({
+        where: {
+          id,
+          user: {email}
+        },
+        include: {
+          user: true
+        }
+      })
+
+      if (!token) {
+        throw new trpc.TRPCError({
+          code: FORBIDDEN,
+          message: errorMessages.invalidToken
+        })
+      }
+
+      const jwt = signJwt({
+        email: token.user.email,
+        id: token.user.id
+      })
+
+      ctx.res.setHeader('Set-Cookie', serialize('token', jwt, {path: '/'}))
+
+      return {
+        redirect: token.redirect
+      }
+    }
+  })
+  .query('me', {
+    resolve({ctx}) {
+      return ctx.user
     }
   })

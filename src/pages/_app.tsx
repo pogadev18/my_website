@@ -7,6 +7,7 @@ import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { AppRouter } from "@/root/server/routes/app.router";
+import { url } from "@/root/constants/url";
 
 import '@/root/styles/globals.css'
 
@@ -21,10 +22,6 @@ function MyApp({Component, pageProps}: AppProps) {
 
 export default withTRPC<AppRouter>({
   config({ctx}) {
-    const url = process.env.NEXT_PUBLIC_VERCEL_URL ?
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/trpc`
-      : 'http://localhost:3000/api/trpc';
-
     const links = [
       loggerLink(),
       httpBatchLink({

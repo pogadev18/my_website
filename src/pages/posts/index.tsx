@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { trpc } from "@/root/utils/trpc";
+import PostsList from "@/root/components/PostsList";
 
 function PostListingPage() {
   const {data, isLoading} = trpc.useQuery(['posts.posts'])
@@ -11,14 +10,7 @@ function PostListingPage() {
 
   return (
     <div>
-      {data?.map((post) => {
-        return (
-          <article key={post.id}>
-            <p>{post.title}</p>
-            <Link href={`/posts/${post.id}`}>Read post</Link>
-          </article>
-        )
-      })}
+      {data && <PostsList posts={data}/>}
     </div>
   )
 }

@@ -7,6 +7,7 @@ interface CtxUser {
   id: string
   email: string
   name: string
+  role: string;
   iat: string
   exp: number
 }

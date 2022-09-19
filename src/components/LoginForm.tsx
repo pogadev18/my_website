@@ -38,7 +38,7 @@ function LoginForm() {
       <form onSubmit={handleSubmit(onSubmit)}>
         {error && error.message}
         {success && <p>check your email</p>}
-        <h1>Register</h1>
+        <h1>Login</h1>
 
         <input
           type="email"

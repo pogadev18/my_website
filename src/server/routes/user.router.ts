@@ -16,13 +16,14 @@ export const userRouter = createRouter()
   .mutation('register-user', {
     input: createUserSchema,
     async resolve({ctx, input}) {
-      const {name, email} = input;
+      const {name, email, role} = input;
 
       try {
         return await ctx.prisma.user.create({
           data: {
             name,
-            email
+            email,
+            role
           }
         });
       } catch (error) {
@@ -108,7 +109,8 @@ export const userRouter = createRouter()
 
       const jwt = signJwt({
         email: token.user.email,
-        id: token.user.id
+        id: token.user.id,
+        role: token.user.role || null
       })
 
       ctx.res.setHeader('Set-Cookie', serialize('token', jwt, {path: '/'}))

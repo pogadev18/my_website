@@ -8,24 +8,15 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { AppRouter } from "@/root/server/routes/app.router";
 import { url } from "@/root/constants/url";
-import { trpc } from '@/root/utils/trpc';
-import { UserContextProvider } from "@/root/context/user.context";
 
 import '@/root/styles/globals.css'
 
 function MyApp({Component, pageProps}: AppProps) {
-  const {data, isLoading} = trpc.useQuery(['users.me']);
-
-  if (isLoading) return <p>Loading user...</p>
-
-  // todo: change how you use the user provider, you want your users to be able to see the website
   return (
-    <UserContextProvider value={data}>
-      <main>
-        <Component {...pageProps} />
-        <ReactQueryDevtools/>
-      </main>
-    </UserContextProvider>
+    <main>
+      <Component {...pageProps} />
+      <ReactQueryDevtools/>
+    </main>
   )
 }
 
@@ -43,7 +34,7 @@ export default withTRPC<AppRouter>({
       queryClientConfig: {
         defaultOptions: {
           queries: {
-            staleTime: 60 // re-fetch queries after this time expires
+            staleTime: 86400000 // re-fetch queries after this time expires
           }
         }
       },

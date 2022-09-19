@@ -4,42 +4,34 @@ import { prisma } from '@/root/utils/prisma';
 import { verifyJwt } from "@/root/utils/jwt";
 
 interface CtxUser {
-  id: string;
-  email: string;
-  name: string;
-  iat: string;
-  exp: number;
+  id: string
+  email: string
+  name: string
+  iat: string
+  exp: number
 }
 
-async function getUserFromRequest(req: NextApiRequest) {
-  const token = req.cookies.token;
+function getUserFromRequest(req: NextApiRequest) {
+  const token = req.cookies.token
 
   if (token) {
     try {
-      return verifyJwt<CtxUser>(token);
-      
+      return verifyJwt<CtxUser>(token)
     } catch (e) {
-      return null;
+      return null
     }
   }
 
-  return null;
+  return null
 }
 
-type createContextParams = {
-  req: NextApiRequest,
+export function createContext({req, res,}:{
+  req: NextApiRequest
   res: NextApiResponse
+}) {
+  const user = getUserFromRequest(req)
+
+  return { req, res, prisma, user }
 }
 
-export function createContext({req, res}: createContextParams) {
-  const user = getUserFromRequest(req);
-
-  return {
-    req,
-    res,
-    prisma,
-    user
-  }
-}
-
-export type Context = ReturnType<typeof createContext>;
+export type Context = ReturnType<typeof createContext>

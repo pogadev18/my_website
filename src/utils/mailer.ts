@@ -8,16 +8,15 @@ type sendLoginEmailParameters = {
 
 export async function sendLoginEmail({email, url, token,}: sendLoginEmailParameters) {
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    service: 'SendPulse',
     auth: {
-      user: process.env.ETHEREAL_USER,
-      pass: process.env.ETHEREAL_PASS
+      user: process.env.DUMMY_SENDPULSE_USER,
+      pass: process.env.DUMMY_SENDPULSE_PASS
     }
   });
 
   const info = await transporter.sendMail({
-    from: '"PogaDevWeb" <pogade18@gmail.com>',
+    from: '"PogaDevWeb" <pogadev18@gmail.com>',
     to: email,
     subject: 'Login to your account',
     html: `Login by clicking <a href="${url}/login#token=${token}">HERE</a>`,

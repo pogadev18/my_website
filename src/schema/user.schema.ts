@@ -1,20 +1,14 @@
 import z from 'zod';
 
-export const createUserSchema = z.object({
+export const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(4).max(20),
+
+});
+
+export const signUpSchema = loginSchema.extend({
   name: z.string(),
-  email: z.string().email(),
-  role: z.string().default('admin')
-})
+});
 
-export type CreateUserInput = z.TypeOf<typeof createUserSchema>;
-
-export const requestOPTSchema = z.object({
-  email: z.string().email(),
-  redirect: z.string().default('/')
-})
-
-export type requestOTPInput = z.TypeOf<typeof requestOPTSchema>;
-
-export const verifyOTPSchema = z.object({
-  hash: z.string()
-})
+export type ILogin = z.infer<typeof loginSchema>;
+export type ISignUp = z.infer<typeof signUpSchema>;

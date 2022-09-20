@@ -48,7 +48,7 @@ function LoginForm() {
         <button type="submit">Login</button>
       </form>
 
-      <Link href="/register">Register</Link>
+      <Link href="/signup">Register</Link>
     </>
   )
 }

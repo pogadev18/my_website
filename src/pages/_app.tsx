@@ -1,7 +1,6 @@
-import type { AppProps } from 'next/app'
 import { withTRPC } from "@trpc/next";
 import superjson from 'superjson';
-
+import { SessionProvider } from "next-auth/react";
 import { loggerLink } from '@trpc/client/links/loggerLink'
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -11,11 +10,13 @@ import { url } from "@/root/constants/url";
 
 import '@/root/styles/globals.css'
 
-function MyApp({Component, pageProps}: AppProps) {
+function MyApp({Component, pageProps}: any) {
   return (
     <main>
-      <Component {...pageProps} />
-      <ReactQueryDevtools/>
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools/>
+      </SessionProvider>
     </main>
   )
 }

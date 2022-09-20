@@ -2,23 +2,26 @@ import type { AppProps } from 'next/app'
 import { withTRPC } from "@trpc/next";
 import superjson from 'superjson';
 
-import { loggerLink } from "@trpc/client/src/links/loggerLink";
-import { httpBatchLink } from "@trpc/client/src/links/httpBatchLink";
-
+import { loggerLink } from '@trpc/client/links/loggerLink'
+import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { AppRouter } from "@/root/server/routes/app.router";
+import { url } from "@/root/constants/url";
+
 import '@/root/styles/globals.css'
 
 function MyApp({Component, pageProps}: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <main>
+      <Component {...pageProps} />
+      <ReactQueryDevtools/>
+    </main>
+  )
 }
 
 export default withTRPC<AppRouter>({
   config({ctx}) {
-    const url = process.env.NEXT_PUBLIC_VERCEL_URL ?
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/trpc`
-      : 'http://localhost:3000/api/trpc';
-
     const links = [
       loggerLink(),
       httpBatchLink({
@@ -31,7 +34,7 @@ export default withTRPC<AppRouter>({
       queryClientConfig: {
         defaultOptions: {
           queries: {
-            staleTime: 60 // re-fetch queries after this time expires
+            staleTime: 86400000 // re-fetch queries after this time expires
           }
         }
       },

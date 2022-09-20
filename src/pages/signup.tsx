@@ -19,7 +19,6 @@ function SignupPage() {
   });
 
   function onSubmit(values: ISignUp) {
-    console.log('sdsds')
     mutate(values);
   }
 

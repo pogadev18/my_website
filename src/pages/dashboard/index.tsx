@@ -3,9 +3,6 @@ import { useSession, signOut } from "next-auth/react";
 
 import { requireAuth } from "@/root/common/requireAuth";
 
-export const getServerSideProps = requireAuth(async (ctx) => {
-  return {props: {}};
-});
 
 const Dashboard: NextPage = () => {
   const {data} = useSession();
@@ -38,5 +35,10 @@ const Dashboard: NextPage = () => {
     </div>
   );
 };
+
+export const getServerSideProps = requireAuth(async (ctx) => {
+  return {props: {}};
+});
+
 
 export default Dashboard;

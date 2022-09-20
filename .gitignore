@@ -13,7 +13,7 @@
 /out/
 .idea
 
-.env
+/.env
 
 # production
 /build

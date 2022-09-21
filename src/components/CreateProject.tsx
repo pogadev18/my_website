@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { CreatePostInput } from "@/root/schema/post.schema";
 import { trpc } from "@/root/utils/trpc";
 
-function CreatePostPage() {
+function CreateProject() {
   const {handleSubmit, register} = useForm<CreatePostInput>()
   const router = useRouter()
 
@@ -18,7 +18,7 @@ function CreatePostPage() {
 
   return (
     <>
-      <h1>Create posts</h1>
+      <h3>Create project</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="text" placeholder="Your post title" {...register('title')} />
         <br/>
@@ -32,4 +32,4 @@ function CreatePostPage() {
   )
 }
 
-export default CreatePostPage;
+export default CreateProject;

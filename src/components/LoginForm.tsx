@@ -1,56 +1,45 @@
-import { useState } from "react";
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
+import Head from "next/head";
+import { useCallback } from "react";
+import { signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { CreateUserInput } from "@/root/schema/user.schema";
-import { trpc } from "@/root/utils/trpc";
+import { loginSchema, ILogin } from "@/root/schema/user.schema";
 
-function VerifyToken({hash}: { hash: string }) {
-  const router = useRouter();
-  const {data, isLoading} = trpc.useQuery(['users.verify-otp', {hash}])
-
-  if (isLoading) return <p>verifying...</p>
-
-  router.push(data?.redirect.includes('login') ? '/' : data?.redirect || '/')
-  return <p>Redirecting...</p>
-}
-
-function LoginForm() {
-  const {handleSubmit, register} = useForm<CreateUserInput>()
-  const router = useRouter();
-  const [success, setSuccess] = useState(false)
-
-  const {mutate, error} = trpc.useMutation(['users.request-otp'], {
-    onSuccess: () => setSuccess(true)
+const LoginForm = () => {
+  const {register, handleSubmit, formState: {errors}} = useForm<ILogin>({
+    resolver: zodResolver(loginSchema),
   });
 
-  function onSubmit(values: CreateUserInput) {
-    mutate({...values, redirect: router.asPath});
-  }
-
-  const tokenHash = router.asPath.split('#token=')[1];
-
-  if (tokenHash) return <VerifyToken hash={tokenHash}/>
+  const onSubmit = useCallback(async (data: ILogin) => {
+    await signIn("credentials", {...data, callbackUrl: "/dashboard"});
+  }, []);
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {error && error.message}
-        {success && <p>check your email</p>}
-        <h1>Login</h1>
-
+    <section>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input
           type="email"
-          placeholder="jane.doe@example.com"
-          {...register('email')}
+          placeholder="Type your email..."
+          {...register("email")}
         />
-        <button type="submit">Login</button>
+        <p>{errors.email && errors.email.message}</p>
+        <input
+          type="password"
+          placeholder="Type your password..."
+          {...register("password")}
+        />
+        <p>{errors.password && errors.password.message}</p>
+        <div>
+          <button className="btn btn-secondary" type="submit">
+            Login
+          </button>
+        </div>
       </form>
-
-      <Link href="/register">Register</Link>
-    </>
-  )
-}
+    </section>
+  );
+};
 
 export default LoginForm;

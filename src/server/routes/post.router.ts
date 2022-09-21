@@ -8,8 +8,8 @@ import { createPostSchema, getSinglePostSchema } from "@/root/schema/post.schema
 export const postRouter = createRouter()
   .mutation('create-post', {
     input: createPostSchema,
-    async resolve({ ctx, input }) {
-      if (!ctx.user) {
+    async resolve({ctx, input}) {
+      if (!ctx.session) {
         new trpc.TRPCError({
           code: FORBIDDEN,
           message: errorMessages.postCreationDenied
@@ -21,7 +21,8 @@ export const postRouter = createRouter()
           ...input,
           user: {
             connect: {
-              id: ctx.user?.id
+              // @ts-ignore
+              id: ctx.session?.id
             },
           },
         },
@@ -30,13 +31,13 @@ export const postRouter = createRouter()
     },
   })
   .query('posts', {
-    resolve({ ctx }) {
+    resolve({ctx}) {
       return ctx.prisma.post.findMany()
     },
   })
   .query('single-post', {
     input: getSinglePostSchema,
-    resolve({ input, ctx }) {
+    resolve({input, ctx}) {
       return ctx.prisma.post.findUnique({
         where: {
           id: input.postId,

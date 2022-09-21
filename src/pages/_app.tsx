@@ -1,7 +1,6 @@
-import type { AppProps } from 'next/app'
 import { withTRPC } from "@trpc/next";
 import superjson from 'superjson';
-
+import { SessionProvider } from "next-auth/react";
 import { loggerLink } from '@trpc/client/links/loggerLink'
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -9,13 +8,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { AppRouter } from "@/root/server/routes/app.router";
 import { url } from "@/root/constants/url";
 
-import '@/root/styles/globals.css'
-
-function MyApp({Component, pageProps}: AppProps) {
+function MyApp({Component, pageProps}: any) {
   return (
     <main>
-      <Component {...pageProps} />
-      <ReactQueryDevtools/>
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools/>
+      </SessionProvider>
     </main>
   )
 }
@@ -34,7 +33,7 @@ export default withTRPC<AppRouter>({
       queryClientConfig: {
         defaultOptions: {
           queries: {
-            staleTime: 86400000 // re-fetch queries after this time expires
+            staleTime: 86400000 // re-fetch queries after this time expires -> 24h
           }
         }
       },
@@ -51,5 +50,5 @@ export default withTRPC<AppRouter>({
       transformer: superjson,
     }
   },
-  ssr: false // tweak this if you want to use SSR or if you think is necessary
+  ssr: true // tweak this if you want to use SSR or if you think is necessary
 })(MyApp);

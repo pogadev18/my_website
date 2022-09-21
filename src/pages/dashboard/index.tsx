@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { useSession, signOut } from "next-auth/react";
+import Head from "next/head";
 
 import { requireAuth } from "@/root/common/requireAuth";
-import Head from "next/head";
-import CreateProject from "@/root/components/CreateProject";
+import CreateProjectForm from "@/root/components/createProjectForm/CreateProjectForm";
 
 const Dashboard: NextPage = () => {
   const {data} = useSession();
@@ -27,7 +27,7 @@ const Dashboard: NextPage = () => {
           </button>
         </header>
 
-        <CreateProject/>
+        <CreateProjectForm/>
       </main>
     </>
   );

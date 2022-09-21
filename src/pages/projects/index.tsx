@@ -1,8 +1,9 @@
 import { trpc } from "@/root/utils/trpc";
-import PostsList from "@/root/components/PostsList";
+import PostsList from "@/root/components/postsList/PostsList";
 
 function PostListingPage() {
-  const {data, isLoading} = trpc.useQuery(['posts.posts'])
+  // TODO: SSR Query
+  const {data, isLoading} = trpc.useQuery(['projects.projects'])
 
   if (isLoading) {
     return <p>Loading posts...</p>

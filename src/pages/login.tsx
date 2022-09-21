@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 
-import LoginForm from "@/root/components/LoginForm";
+import LoginForm from "@/root/components/loginForm";
 
 const LoginPage: NextPage = () => {
   return (

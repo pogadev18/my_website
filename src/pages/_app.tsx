@@ -6,15 +6,20 @@ import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { AppRouter } from "@/root/server/routes/app.router";
+import AppLayout from "@/root/components/layouts/appLayout";
 import { url } from "@/root/constants/url";
+
+import '@/root/styles/globals.css';
 
 function MyApp({Component, pageProps}: any) {
   return (
     <main>
-      <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
-        <ReactQueryDevtools/>
-      </SessionProvider>
+      <AppLayout>
+        <SessionProvider session={pageProps.session}>
+          <Component {...pageProps} />
+          <ReactQueryDevtools/>
+        </SessionProvider>
+      </AppLayout>
     </main>
   )
 }
@@ -50,5 +55,5 @@ export default withTRPC<AppRouter>({
       transformer: superjson,
     }
   },
-  ssr: true // tweak this if you want to use SSR or if you think is necessary
+  ssr: false // tweak this if you want to use SSR or if you think is necessary
 })(MyApp);

@@ -30,7 +30,7 @@ export const postRouter = createRouter()
 
     },
   })
-  .query('posts', {
+  .query('projects', {
     resolve({ctx}) {
       return ctx.prisma.post.findMany()
     },

@@ -4,7 +4,7 @@ import {postRouter} from "@/root/server/routes/post.router";
 
 export const appRouter = createRouter()
   .merge('users.', userRouter)
-  .merge('posts.', postRouter)
+  .merge('projects.', postRouter)
 
 
 export type AppRouter = typeof appRouter;

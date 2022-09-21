@@ -8,7 +8,7 @@ function SinglePostPage() {
 
   const postId = router.query.postId as string
 
-  const {data, isLoading} = trpc.useQuery(['posts.single-post', {postId}])
+  const {data, isLoading} = trpc.useQuery(['projects.single-post', {postId}])
 
   if (isLoading) {
     return <p>Loading post...</p>

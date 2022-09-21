@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 import Link from "next/link";
 
 import { trpc } from "@/root/utils/trpc";
-import PostsList from "@/root/components/PostsList";
+import PostsList from "@/root/components/postsList";
 
 
 const Home: NextPage = () => {
-  const {data, isLoading} = trpc.useQuery(['posts.posts'])
+  const {data, isLoading} = trpc.useQuery(['projects.projects'])
 
   return (
     <div>
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         (
           <>
             <PostsList posts={data}/>
-            <Link href='/posts'>see all projects</Link>
+            <Link href='/projects'>see all projects</Link>
           </>
         )
       }

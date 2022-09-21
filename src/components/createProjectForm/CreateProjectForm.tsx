@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { CreatePostInput } from "@/root/schema/post.schema";
 import { trpc } from "@/root/utils/trpc";
 
-function CreateProject() {
+function CreateProjectForm() {
   const {handleSubmit, register} = useForm<CreatePostInput>()
   const router = useRouter()
 
-  const {mutate, isLoading, error} = trpc.useMutation(['posts.create-post'], {
+  const {mutate, isLoading, error} = trpc.useMutation(['projects.create-post'], {
     onSuccess: ({id}) => router.push(`/posts/${id}`)
   });
 
@@ -32,4 +32,4 @@ function CreateProject() {
   )
 }
 
-export default CreateProject;
+export default CreateProjectForm;

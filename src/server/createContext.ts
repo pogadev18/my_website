@@ -9,7 +9,6 @@ export async function createContext(ctx: trpcNext.CreateNextContextOptions) {
   const {req, res} = ctx;
   const session = await unstable_getServerSession(req, res, nextAuthOptions);
 
-  console.log('we have a session!!!', session);
   return {
     req,
     res,

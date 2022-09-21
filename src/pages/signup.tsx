@@ -9,7 +9,7 @@ import { signUpSchema, ISignUp } from "@/root/schema/user.schema";
 import { trpc } from "@/root/utils/trpc";
 
 function SignupPage() {
-  const {handleSubmit, register} = useForm<ISignUp>({
+  const {handleSubmit, register, formState: {errors}} = useForm<ISignUp>({
     resolver: zodResolver(signUpSchema)
   })
   const router = useRouter();
@@ -36,18 +36,21 @@ function SignupPage() {
           placeholder="Type your username..."
           {...register("name")}
         />
+        <p>{errors.name && errors.name.message}</p>
         <br/>
         <input
           type="email"
           placeholder="Type your email..."
           {...register("email")}
         />
+        <p>{errors.email && errors.email.message}</p>
         <br/>
         <input
           type="password"
           placeholder="Type your password..."
           {...register("password")}
         />
+        <p>{errors.password && errors.password.message}</p>
         <button type="submit">SignUp</button>
       </form>
 

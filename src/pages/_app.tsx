@@ -8,8 +8,6 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { AppRouter } from "@/root/server/routes/app.router";
 import { url } from "@/root/constants/url";
 
-import '@/root/styles/globals.css'
-
 function MyApp({Component, pageProps}: any) {
   return (
     <main>
@@ -35,7 +33,7 @@ export default withTRPC<AppRouter>({
       queryClientConfig: {
         defaultOptions: {
           queries: {
-            staleTime: 86400000 // re-fetch queries after this time expires
+            staleTime: 86400000 // re-fetch queries after this time expires -> 24h
           }
         }
       },

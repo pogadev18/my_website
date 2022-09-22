@@ -6,22 +6,22 @@ import { trpc } from "@/root/utils/trpc";
 function SinglePostPage() {
   const router = useRouter()
 
-  const postId = router.query.postId as string
+  const projectId = router.query.projectId as string
 
-  const {data, isLoading} = trpc.useQuery(['projects.single-post', {postId}])
+  const {data: project, isLoading} = trpc.useQuery(['projects.single-post', {projectId}])
 
   if (isLoading) {
     return <p>Loading post...</p>
   }
 
-  if (!data) {
+  if (!project) {
     return <Error statusCode={404}/>
   }
 
   return (
     <div>
-      <h1>{data?.title}</h1>
-      <p>{data?.body}</p>
+      <h1>{project?.title}</h1>
+      <p>{project?.body}</p>
     </div>
   )
 }

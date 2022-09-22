@@ -9,7 +9,7 @@ function CreateProjectForm() {
   const router = useRouter()
 
   const {mutate, isLoading, error} = trpc.useMutation(['projects.create-post'], {
-    onSuccess: ({id}) => router.push(`/posts/${id}`)
+    onSuccess: ({id}) => router.push(`/projects/${id}`)
   });
 
   function onSubmit(values: CreatePostInput) {

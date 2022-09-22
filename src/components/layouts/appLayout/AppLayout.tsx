@@ -1,16 +1,17 @@
 import { ReactNode } from 'react';
 
-import Header from '@/root/components/header';
+import CoreArea from "@/root/components/coreArea";
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
-const AppLayout = ({ children }: AppLayoutProps) => {
+const AppLayout = ({children}: AppLayoutProps) => {
   return (
     <>
-      <Header />
-      <section className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">{children}</section>
+      <section className='appLayout mx-auto max-w-6xl'>
+        <CoreArea children={children}/>
+      </section>
     </>
   );
 };

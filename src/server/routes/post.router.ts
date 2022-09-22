@@ -19,12 +19,12 @@ export const postRouter = createRouter()
       return await ctx.prisma.post.create({
         data: {
           ...input,
-          user: {
+         user: {
             connect: {
               // @ts-ignore
               id: ctx.session?.id
-            },
-          },
+            }
+         }
         },
       })
 
@@ -40,7 +40,7 @@ export const postRouter = createRouter()
     resolve({input, ctx}) {
       return ctx.prisma.post.findUnique({
         where: {
-          id: input.postId,
+          id: input.projectId,
         },
       })
     },

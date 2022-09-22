@@ -1,18 +1,20 @@
 import { trpc } from "@/root/utils/trpc";
-import PostsList from "@/root/components/postsList/PostsList";
+
+import Container from "@/root/components/container";
+import ProjectsList from "@/root/components/projectsList/ProjectsList";
 
 function PostListingPage() {
   // TODO: SSR Query
-  const {data, isLoading} = trpc.useQuery(['projects.projects'])
+  const {data: projects, isLoading} = trpc.useQuery(['projects.projects'])
 
   if (isLoading) {
     return <p>Loading posts...</p>
   }
 
   return (
-    <div>
-      {data && <PostsList posts={data}/>}
-    </div>
+    <Container>
+      {projects && <ProjectsList projects={projects}/>}
+    </Container>
   )
 }
 

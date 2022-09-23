@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-
+import Navbar from "@/root/components/navbar";
 
 const AboutMe = () => {
   return (
-    <section className='aboutMe shadow-md rounded-xl p-7'>
+    <section className='aboutMe shadow-md rounded-xl p-7 pb-4'>
       <h2>About me</h2>
       <div className='text-gray-600 my-5'>
         <p>Hi, my name is Bogdan, I'm 27 years old and I'm a Front-End Engineer working in the IT industry for 6+ years.
@@ -19,15 +18,11 @@ const AboutMe = () => {
         <br/>
         <p className='text-blue-600'>@&nbsp;<a href='mailto:pogadev18@gmail.com'>pogadev18@gmail.com</a></p>
         <ul className='flex gap-3 mt-4'>
-          <li><FaGithub size='25px'/></li>
-          <li><FaLinkedin size='25px'/></li>
+          <li><a href='https://github.com/pogadev18' target='_blank'><FaGithub size='25px'/></a></li>
+          <li><a href='https://www.linkedin.com/in/pogadev/' target='_blank'><FaLinkedin size='25px'/></a></li>
         </ul>
       </div>
-        <ul className='flex'>
-          <li><Link href='/'>Resume</Link></li>
-          <li><Link href='/projects'>Projects</Link></li>
-          <li></li>
-        </ul>
+      <Navbar/>
     </section>
   );
 };

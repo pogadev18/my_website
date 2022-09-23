@@ -9,9 +9,9 @@ interface AppLayoutProps {
 const AppLayout = ({children}: AppLayoutProps) => {
   return (
     <>
-      <section className='appLayout mx-auto max-w-6xl'>
+      <main className='appLayout mx-auto max-w-6xl py-10'>
         <CoreArea children={children}/>
-      </section>
+      </main>
     </>
   );
 };

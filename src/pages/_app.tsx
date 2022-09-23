@@ -13,14 +13,12 @@ import '@/root/styles/globals.css';
 
 function MyApp({Component, pageProps}: any) {
   return (
-    <main>
-      <AppLayout>
-        <SessionProvider session={pageProps.session}>
-          <Component {...pageProps} />
-          <ReactQueryDevtools/>
-        </SessionProvider>
-      </AppLayout>
-    </main>
+    <AppLayout>
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools/>
+      </SessionProvider>
+    </AppLayout>
   )
 }
 

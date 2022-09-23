@@ -1,6 +1,5 @@
 import { trpc } from "@/root/utils/trpc";
 
-import Container from "@/root/components/container";
 import ProjectsList from "@/root/components/projectsList/ProjectsList";
 
 function PostListingPage() {
@@ -12,9 +11,9 @@ function PostListingPage() {
   }
 
   return (
-    <Container>
+    <>
       {projects && <ProjectsList projects={projects}/>}
-    </Container>
+    </>
   )
 }
 

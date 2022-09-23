@@ -1,11 +1,10 @@
-import SvgPattern from "@/root/components/svgPattern";
 import Image from 'next/image'
 
 import styles from './ProfileCard.module.scss';
 
 const ProfileCard = () => {
   return (
-    <article className='shadow rounded-xl overflow-hidden'>
+    <article className='shadow-md rounded-xl overflow-hidden'>
       <header className={styles.header}/>
       <div className='pt-14 p-7 bg-white relative'>
         <div className={`shadow ${styles.profileImage}`}>

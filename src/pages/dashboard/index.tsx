@@ -3,7 +3,7 @@ import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 
 import { requireAuth } from "@/root/common/requireAuth";
-import CreateProjectForm from "@/root/components/createProjectForm/CreateProjectForm";
+import ProjectForm from "@/root/components/projectForm/ProjectForm";
 
 const Dashboard: NextPage = () => {
   const {data} = useSession();
@@ -16,18 +16,21 @@ const Dashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <main>
-        <header>
-          <h1>
+        <header className='flex gap-10'>
+          <h1 className='grow'>
             Hello, {data?.user?.name}!
           </h1>
           <button
+            className="basis-3/12 transition ease-in-out grow bg-red-600 hover:bg-red-800 text-white py-2 px-10 rounded"
             onClick={() => signOut({callbackUrl: "/"})}
           >
             Logout
           </button>
         </header>
 
-        <CreateProjectForm/>
+        <section className='my-5'>
+          <ProjectForm/>
+        </section>
       </main>
     </>
   );

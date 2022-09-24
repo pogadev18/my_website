@@ -7,6 +7,7 @@ import { trpc } from "@/root/utils/trpc";
 import styles from './AboutMe.module.scss';
 
 const AboutMe = () => {
+  // TODO: SSR Query
   const {data: user, isLoading} = trpc.useQuery(['users.me']);
 
   return (

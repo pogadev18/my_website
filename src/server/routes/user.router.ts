@@ -11,7 +11,7 @@ export const userRouter = createRouter()
   .mutation('register-user', {
     input: signUpSchema,
     async resolve({ctx, input}) {
-      const {name, email, password} = input;
+      const {name, email, password, description, githubLink, linkedInLink} = input;
 
       const userExists = await ctx.prisma.user.findFirst({where: {email}})
 
@@ -25,7 +25,14 @@ export const userRouter = createRouter()
       const hashedPassword = await hash(password);
 
       const result = await ctx.prisma.user.create({
-        data: { name, email, password: hashedPassword },
+        data: {
+          name,
+          email,
+          password: hashedPassword,
+          description,
+          githubLink,
+          linkedInLink
+        },
       });
 
 
@@ -34,5 +41,10 @@ export const userRouter = createRouter()
         email: result.email,
         name: result.name
       };
+    }
+  })
+  .query('me', {
+    async resolve({ctx}) {
+      return await ctx.prisma.user.findFirst();
     }
   })

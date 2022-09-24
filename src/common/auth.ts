@@ -34,6 +34,9 @@ export const nextAuthOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
+          description: user.description,
+          github: user.githubLink,
+          linkedin: user.linkedInLink
         };
       },
     }),

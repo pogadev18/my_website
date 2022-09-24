@@ -12,7 +12,6 @@ const LoginPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <LoginForm/>
-
     </>
   );
 };

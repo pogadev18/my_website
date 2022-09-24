@@ -1,39 +1,24 @@
 .navWrapper {
-  padding-top: 15px;
+  padding-top: 20px;
   border-top: 1px solid #ccc;
 }
 
-
 .navLink {
-  position: relative;
-  transition: all 0.3s ease-in-out;
-
-  &::after {
-    content: '';
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -19px;
-    left: 0;
-    right: 0;
-    background: #ba2236;
-  }
+  box-shadow: inset 0 0 0 0 #ba3326;
+  border-radius: 5px;
+  color: #000;
+  padding: 8px;
+  margin: 0 5px;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+  line-height: 1.5;
 
   &:hover {
-    color: #ba3326;
-
-    &::after {
-      opacity: 1;
-    }
+    color: #fff;
+    box-shadow: inset 200px 0 0 0 #ba3326;
   }
 }
 
 .linkActive {
-  color: #ba3326;
-
-  &::after {
-    opacity: 1;
-  }
+  color: #fff;
+  box-shadow: inset 200px 0 0 0 #ba3326;
 }

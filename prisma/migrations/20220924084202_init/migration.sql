@@ -4,6 +4,9 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "githubLink" TEXT NOT NULL DEFAULT 'https://github.com/pogadev18',
+    "linkedInLink" TEXT NOT NULL DEFAULT 'https://www.linkedin.com/in/pogadev/',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL
 );

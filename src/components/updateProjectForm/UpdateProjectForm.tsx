@@ -30,6 +30,7 @@ const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
   }
 
   // TODO: Invalidate post queries after mutations
+  // TODO: try https://github.com/jlalmes/trpc-openapi
 
   return (
     <>

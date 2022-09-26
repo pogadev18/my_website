@@ -30,6 +30,7 @@ const Dashboard: NextPage = () => {
 
         <section className='my-5'>
           <ProjectForm/>
+          <hr className='my-10'/>
         </section>
       </main>
     </>

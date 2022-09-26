@@ -1,9 +1,8 @@
 import Image from 'next/image'
 
 import styles from './ProfileCard.module.scss';
-import { IUser } from "@/root/components/coreArea/CoreArea";
 
-const ProfileCard = ({user}: IUser) => {
+const ProfileCard = ({workStatus}: { workStatus: string | undefined }) => {
   return (
     <article className='shadow-md rounded-xl overflow-hidden'>
       <header className={styles.header}/>
@@ -18,12 +17,14 @@ const ProfileCard = ({user}: IUser) => {
             height='100px'
           />
         </div>
-        <span className={styles.statusPill}>{user?.workStatus}</span>
+        <span className={styles.statusPill}>{workStatus}</span>
         <p className="text-lg font-semibold">Bogdan Pogăcean</p>
         <p className="text-sm text-gray-400 mb-7">Senior Front-End Engineer</p>
         <div className="flex group">
-          <button className="transition ease-in-out grow bg-red-600 hover:bg-red-800 text-white p-3 rounded-tl-xl rounded-bl-xl">
-            <a target='_blank' href='https://gbcumhglvcigfylcfycr.supabase.co/storage/v1/object/sign/my-website-files/CV_Bogdan_Pogacean.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJteS13ZWJzaXRlLWZpbGVzL0NWX0JvZ2Rhbl9Qb2dhY2Vhbi5wZGYiLCJpYXQiOjE2NjM5MjY2MzksImV4cCI6MTk3OTI4NjYzOX0.cyNbnhcwY0O75axiNEqrWTr32ibnKcUmfrtyfyc2UGI'>
+          <button
+            className="transition ease-in-out grow bg-red-600 hover:bg-red-800 text-white p-3 rounded-tl-xl rounded-bl-xl">
+            <a target='_blank'
+               href='https://gbcumhglvcigfylcfycr.supabase.co/storage/v1/object/sign/my-website-files/CV_Bogdan_Pogacean.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJteS13ZWJzaXRlLWZpbGVzL0NWX0JvZ2Rhbl9Qb2dhY2Vhbi5wZGYiLCJpYXQiOjE2NjM5MjY2MzksImV4cCI6MTk3OTI4NjYzOX0.cyNbnhcwY0O75axiNEqrWTr32ibnKcUmfrtyfyc2UGI'>
               Download CV
             </a>
           </button>

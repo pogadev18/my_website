@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
+import LoadingSpinner from "@/root/components/loadingSpinner";
+
 import { UpdatePostInput } from "@/root/schema/post.schema";
 import { trpc } from "@/root/utils/trpc";
-import LoadingSpinner from "@/root/components/loadingSpinner";
 
 interface IUpdateProjectForm {
   projectId: string;
@@ -14,8 +15,8 @@ interface IUpdateProjectForm {
 }
 
 const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
+  const router = useRouter();
   const trpcContext = trpc.useContext();
-  const router = useRouter()
   const {handleSubmit, register} = useForm<UpdatePostInput>({
     defaultValues
   })
@@ -43,7 +44,6 @@ const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
     deletePost({projectId});
   }
 
-  // TODO: Invalidate post queries after mutations
   // TODO: try https://github.com/jlalmes/trpc-openapi
 
   return (

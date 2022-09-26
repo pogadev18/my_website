@@ -44,7 +44,7 @@ export default withTRPC<AppRouter>({
         if (ctx?.req) {
           return {
             ...ctx.req.headers,
-            'x-ssr': '1', // requests are done on the server
+            // 'x-ssr': '1', // requests are done on the server
           }
         }
         return {}
@@ -53,5 +53,5 @@ export default withTRPC<AppRouter>({
       transformer: superjson,
     }
   },
-  ssr: true // tweak this if you want to use SSR or if you think is necessary
+  ssr: false // Whether tRPC should await queries when server-side rendering a page
 })(MyApp);

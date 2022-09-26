@@ -13,6 +13,7 @@ model User {
   name         String
   password     String
   description  String
+  workStatus   String   @default("busy")
   githubLink   String   @default("https://github.com/pogadev18")
   linkedInLink String   @default("https://www.linkedin.com/in/pogadev/")
   createdAt    DateTime @default(now())

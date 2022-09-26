@@ -1,8 +1,9 @@
 import Image from 'next/image'
 
 import styles from './ProfileCard.module.scss';
+import { IUser } from "@/root/components/coreArea/CoreArea";
 
-const ProfileCard = () => {
+const ProfileCard = ({user}: IUser) => {
   return (
     <article className='shadow-md rounded-xl overflow-hidden'>
       <header className={styles.header}/>
@@ -17,7 +18,7 @@ const ProfileCard = () => {
             height='100px'
           />
         </div>
-        <span className={styles.statusPill}>Busy</span>
+        <span className={styles.statusPill}>{user?.workStatus}</span>
         <p className="text-lg font-semibold">Bogdan Pogăcean</p>
         <p className="text-sm text-gray-400 mb-7">Senior Front-End Engineer</p>
         <div className="flex group">

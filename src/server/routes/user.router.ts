@@ -45,6 +45,14 @@ export const userRouter = createRouter()
   })
   .query('me', {
     async resolve({ctx}) {
-      return await ctx.prisma.user.findFirst();
+      return await ctx.prisma.user.findFirst({
+        select: {
+          email: true,
+          description: true,
+          githubLink: true,
+          linkedInLink: true,
+          workStatus: true
+        }
+      });
     }
   })

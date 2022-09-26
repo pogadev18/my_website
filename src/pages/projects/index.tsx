@@ -7,7 +7,7 @@ function PostListingPage() {
   const {data: projects, isLoading} = trpc.useQuery(['projects.projects'])
 
   if (isLoading) {
-    return <p>Loading posts...</p>
+    return <p>Loading projects...</p>
   }
 
   return (

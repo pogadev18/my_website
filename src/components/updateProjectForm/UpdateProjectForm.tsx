@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 import { UpdatePostInput } from "@/root/schema/post.schema";
 import { trpc } from "@/root/utils/trpc";
@@ -13,11 +14,20 @@ interface IUpdateProjectForm {
 }
 
 const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
+  const trpcContext = trpc.useContext();
+  const router = useRouter()
   const {handleSubmit, register} = useForm<UpdatePostInput>({
     defaultValues
   })
 
-  const {mutate: updatePost, isLoading} = trpc.useMutation(['projects.update-project'])
+  const {mutate: updatePost, isLoading: isUpdatingPost} = trpc.useMutation(['projects.update-project'], {
+    onSuccess: async () => {
+      await trpcContext.invalidateQueries(['projects.projects']);
+      await trpcContext.invalidateQueries(['projects.single-project'])
+      await router.push('/projects');
+    }
+  })
+  const {mutate: deletePost, isLoading: isDeletingPost} = trpc.useMutation(['projects.delete-project']);
 
   function onSubmit(values: UpdatePostInput) {
     const data = {
@@ -29,12 +39,16 @@ const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
     updatePost(data)
   }
 
+  const deletePostHandler = () => {
+    deletePost({projectId});
+  }
+
   // TODO: Invalidate post queries after mutations
   // TODO: try https://github.com/jlalmes/trpc-openapi
 
   return (
     <>
-      {isLoading ? <LoadingSpinner/> : (
+      {isUpdatingPost || isDeletingPost ? <LoadingSpinner/> : (
         <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="project_title" className="block mb-2 text-sm font-medium">Project title</label>
           <input
@@ -53,11 +67,19 @@ const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
             placeholder="Project description..."
             {...register('body')}
           />
-          <button
-            type='submit'
-            className='transition ease-in-out grow bg-amber-600 hover:bg-red-800 text-white py-2 px-4 rounded'>
-            Update project
-          </button>
+          <div className='flex gap-3 mt-5 mb-10'>
+            <button
+              type='submit'
+              className='transition ease-in-out grow bg-amber-600 hover:bg-red-800 text-white py-2 px-4 rounded'>
+              Update project
+            </button>
+            <button
+              type='button'
+              onClick={deletePostHandler}
+              className='transition ease-in-out grow bg-red-800 hover:bg-red-500 text-white py-2 px-4 rounded'>
+              delete project
+            </button>
+          </div>
         </form>
       )}
     </>

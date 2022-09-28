@@ -15,12 +15,17 @@ interface IPosts {
 function ProjectsList({projects}: IPosts) {
   return (
     <section>
-      {projects?.map(({id, title, body}) => (
-        <article key={id}>
-          <h2><Link href={`/projects/${id}`}>{title}</Link></h2>
-          <p>{body}</p>
-        </article>
-      ))}
+      {projects?.map(({id, title, body, createdAt}) => {
+        const date = createdAt.toString().split(' ');
+
+        return (
+          <article key={id}>
+            <h2><Link href={`/projects/${id}`}>{title}</Link></h2>
+            <p>{date[0]}</p>
+            <p>{body}</p>
+          </article>
+        )
+      })}
     </section>
   )
 }

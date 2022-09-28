@@ -13,12 +13,11 @@ import '@/root/styles/globals.css';
 
 function MyApp({Component, pageProps}: any) {
   return (
-    <AppLayout>
-      <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
-        <ReactQueryDevtools/>
-      </SessionProvider>
-    </AppLayout>
+    <SessionProvider session={pageProps.session}>
+      <AppLayout/>
+      <Component {...pageProps} />
+      <ReactQueryDevtools/>
+    </SessionProvider>
   )
 }
 
@@ -40,15 +39,15 @@ export default withTRPC<AppRouter>({
           }
         }
       },
-      headers() {
-        if (ctx?.req) {
-          return {
-            ...ctx.req.headers,
-            // 'x-ssr': '1', // requests are done on the server
-          }
-        }
-        return {}
-      },
+      // headers() {
+      //   if (ctx?.req) {
+      //     return {
+      //       ...ctx.req.headers,
+      //       'x-ssr': '1', // inform server that it's an SSR request
+      //     }
+      //   }
+      //   return {}
+      // },
       links,
       transformer: superjson,
     }

@@ -35,7 +35,6 @@ export const userRouter = createRouter()
         },
       });
 
-
       return {
         status: 201,
         email: result.email,

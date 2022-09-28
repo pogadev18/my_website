@@ -6,7 +6,6 @@ import { IUser } from "@/root/components/coreArea/CoreArea";
 import styles from './AboutMe.module.scss';
 
 const AboutMe = ({user}: IUser) => {
-  // TODO: SSR Query
 
   return (
     <section className={`${styles.aboutMe} shadow-md rounded-xl p-7 pb-4`}>

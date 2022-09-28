@@ -19,7 +19,7 @@ export interface IUser {
   user: IUserProps | null | undefined
 }
 
-const CoreArea = ({children}: { children: ReactNode }) => {
+const CoreArea = () => {
   const {user, isUserLoading, isError} = useUser();
 
   if (isUserLoading) return <LoadingSpinner/>
@@ -35,7 +35,6 @@ const CoreArea = ({children}: { children: ReactNode }) => {
       </section>
       <section className='right-column rounded-xl space-y-5 lg:col-span-2'>
         <AboutMe user={user}/>
-        <section className='actual-routes'>{children}</section>
       </section>
     </section>
   );

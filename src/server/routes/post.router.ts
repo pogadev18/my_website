@@ -1,21 +1,10 @@
-import * as trpc from '@trpc/server';
-
-import { FORBIDDEN } from "@/root/constants/errorCodes";
-import { errorMessages } from "@/root/constants/errorMessages";
 import { createRouter } from "@/root/server/createRouter";
-import { postSchema, singlePostSchema, updateProjectSchema } from "@/root/schema/post.schema";
+import { projectSchema, singleProjectSchema, updateProjectSchema } from "@/root/schema/post.schema";
 
 export const postRouter = createRouter()
   .mutation('create-project', {
-    input: postSchema,
+    input: projectSchema,
     async resolve({ctx, input}) {
-      if (!ctx.session) {
-        new trpc.TRPCError({
-          code: FORBIDDEN,
-          message: errorMessages.postUpdateDenied
-        })
-      }
-
       return await ctx.prisma.post.create({
         data: {
           ...input,
@@ -34,14 +23,6 @@ export const postRouter = createRouter()
     input: updateProjectSchema,
     async resolve({ctx, input}) {
       const {projectId, title, body} = input;
-
-      if (!ctx.session) {
-        new trpc.TRPCError({
-          code: FORBIDDEN,
-          message: errorMessages.postUpdateDenied
-        })
-      }
-
       return await ctx.prisma.post.update({
         where: {id: projectId},
         data: {title, body}
@@ -49,15 +30,8 @@ export const postRouter = createRouter()
     }
   })
   .mutation('delete-project', {
-    input: singlePostSchema,
+    input: singleProjectSchema,
     async resolve({ctx, input}) {
-      if (!ctx.session) {
-        new trpc.TRPCError({
-          code: FORBIDDEN,
-          message: errorMessages.postUpdateDenied
-        })
-      }
-
       return await ctx.prisma.post.delete({
         where: {id: input.projectId},
       })
@@ -69,7 +43,7 @@ export const postRouter = createRouter()
     },
   })
   .query('single-project', {
-    input: singlePostSchema,
+    input: singleProjectSchema,
     resolve({input, ctx}) {
       return ctx.prisma.post.findUnique({
         where: {

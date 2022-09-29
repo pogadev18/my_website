@@ -21,6 +21,7 @@ const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
     defaultValues
   })
 
+  // TODO: refactor duplicated code
   const {mutate: updatePost, isLoading: isUpdatingPost} = trpc.useMutation(['projects.update-project'], {
     onSuccess: async () => {
       await trpcContext.invalidateQueries(['projects.projects']);
@@ -28,7 +29,13 @@ const UpdateProjectForm = ({projectId, defaultValues}: IUpdateProjectForm) => {
       await router.push('/projects');
     }
   })
-  const {mutate: deletePost, isLoading: isDeletingPost} = trpc.useMutation(['projects.delete-project']);
+  const {mutate: deletePost, isLoading: isDeletingPost} = trpc.useMutation(['projects.delete-project'], {
+    onSuccess: async () => {
+      await trpcContext.invalidateQueries(['projects.projects']);
+      await trpcContext.invalidateQueries(['projects.single-project'])
+      await router.push('/projects');
+    }
+  });
 
   function onSubmit(values: UpdatePostInput) {
     const data = {

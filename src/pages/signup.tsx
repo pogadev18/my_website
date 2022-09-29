@@ -15,7 +15,7 @@ function SignupPage() {
   const router = useRouter();
 
   const {mutate, error} = trpc.useMutation(['users.register-user'], {
-    onSuccess: () => router.push('/login')
+    onSuccess: () => router.push('/access-content')
   });
 
   function onSubmit(values: ISignUp) {
@@ -74,7 +74,7 @@ function SignupPage() {
         <button type="submit">SignUp</button>
       </form>
 
-      <Link href="/login">Login</Link>
+      <Link href="/access-content">Login</Link>
     </>
   )
 }

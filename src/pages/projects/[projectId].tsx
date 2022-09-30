@@ -11,6 +11,7 @@ import { trpc } from '@/root/utils/trpc';
 import { prisma } from '@/root/utils/prisma';
 import { appRouter } from '@/root/server/routes/app.router';
 import { createContextInner } from '@/root/server/createContext';
+import { IProject } from '@/root/components/projectsList/ProjectsList';
 
 export const getStaticProps = async (context: GetStaticPropsContext<{ projectId: string }>) => {
   try {
@@ -43,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
 
   return {
-    paths: projects.map((project) => ({
+    paths: projects.map((project: { id: string }) => ({
       params: {
         projectId: project.id,
       },

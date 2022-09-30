@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-interface IProject {
+export interface IProject {
   id: string;
   title: string;
   body: string;

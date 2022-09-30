@@ -1,8 +1,7 @@
-import { trpc } from "@/root/utils/trpc";
+import { trpc } from '@/root/utils/trpc';
 
 export function useUser() {
-  const {data: user, isLoading: isUserLoading, isError} = trpc.useQuery(['users.me']);
+  const { data: user, isLoading: isUserLoading, isError } = trpc.useQuery(['users.me']);
 
-
-  return {user, isUserLoading, isError}
+  return { user, isUserLoading, isError };
 }

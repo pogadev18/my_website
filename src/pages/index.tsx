@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
-import Head from "next/head";
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
-import PageWrapper from "@/root/components/pageWrapper/PageWrapper";
+import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       <h1>Resume page</h1>
       <p>resume details</p>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

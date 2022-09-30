@@ -1,8 +1,8 @@
 import { router } from '@trpc/server';
-import superjson from "superjson";
-import * as trpc from "@trpc/server";
+import superjson from 'superjson';
+import * as trpc from '@trpc/server';
 
-import { Context } from "./createContext";
+import { Context } from './createContext';
 
 export function createRouter() {
   return router<Context>().transformer(superjson);
@@ -14,7 +14,7 @@ export function createRouter() {
 export function createProtectedRouter() {
   return createRouter().middleware(({ ctx, next }) => {
     if (!ctx.session || !ctx.session.user) {
-      throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
+      throw new trpc.TRPCError({ code: 'UNAUTHORIZED' });
     }
     return next({
       ctx: {

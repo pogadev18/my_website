@@ -1,10 +1,10 @@
-import * as trpc from "@trpc/server";
-import * as trpcNext from "@trpc/server/adapters/next";
-import { unstable_getServerSession, Session } from "next-auth";
+import * as trpc from '@trpc/server';
+import * as trpcNext from '@trpc/server/adapters/next';
+import { unstable_getServerSession, Session } from 'next-auth';
 
-import { prisma } from "@/root/utils/prisma";
-import { nextAuthOptions } from "@/root/common/auth";
-import { NextApiRequest, NextApiResponse } from "next";
+import { prisma } from '@/root/utils/prisma';
+import { nextAuthOptions } from '@/root/common/auth';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 /** Use this helper for:
  * - testing, where we don't have to Mock Next.js req/res
@@ -23,7 +23,7 @@ export const createContextInner = async (opts: CreateContextOptions) => {
 };
 
 export async function createContext(ctx: trpcNext.CreateNextContextOptions) {
-  const {req, res} = ctx;
+  const { req, res } = ctx;
   const session = await unstable_getServerSession(req, res, nextAuthOptions);
 
   return createContextInner({

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 interface IProject {
   id: string;
@@ -12,22 +12,24 @@ interface IPosts {
   projects: IProject[];
 }
 
-function ProjectsList({projects}: IPosts) {
+function ProjectsList({ projects }: IPosts) {
   return (
     <section>
-      {projects?.map(({id, title, body, createdAt}) => {
+      {projects?.map(({ id, title, body, createdAt }) => {
         const date = createdAt.toString().split(' ');
 
         return (
           <article key={id}>
-            <h2><Link href={`/projects/${id}`}>{title}</Link></h2>
+            <h2>
+              <Link href={`/projects/${id}`}>{title}</Link>
+            </h2>
             <p>{date[0]}</p>
             <p>{body}</p>
           </article>
-        )
+        );
       })}
     </section>
-  )
+  );
 }
 
-export default ProjectsList
+export default ProjectsList;

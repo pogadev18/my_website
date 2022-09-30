@@ -1,31 +1,39 @@
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import LoadingSpinner from "@/root/components/loadingSpinner";
+import LoadingSpinner from '@/root/components/loadingSpinner';
 
-import { PostInput, projectSchema } from "@/root/schema/post.schema";
-import { trpc } from "@/root/utils/trpc";
+import { PostInput, projectSchema } from '@/root/schema/post.schema';
+import { trpc } from '@/root/utils/trpc';
 
 function ProjectForm() {
-  const {handleSubmit, register, formState: {errors}} = useForm<PostInput>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<PostInput>({
     resolver: zodResolver(projectSchema),
-  })
-  const router = useRouter()
+  });
+  const router = useRouter();
 
-  const {mutate, isLoading} = trpc.useMutation(['projects.create-project'], {
-    onSuccess: ({id}) => router.push(`/projects/${id}`)
+  const { mutate, isLoading } = trpc.useMutation(['projects.create-project'], {
+    onSuccess: ({ id }) => router.push(`/projects/${id}`),
   });
 
   function onSubmit(values: PostInput) {
-    mutate(values)
+    mutate(values);
   }
 
   return (
     <>
-      {isLoading ? <LoadingSpinner/> : (
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="project_title" className="block mb-2 text-sm font-medium">Project title</label>
+          <label htmlFor="project_title" className="block mb-2 text-sm font-medium">
+            Project title
+          </label>
           <input
             type="text"
             id="project_title"
@@ -34,8 +42,10 @@ function ProjectForm() {
             {...register('title')}
           />
           {errors.title && <p>{errors.title.message}</p>}
-          <br/>
-          <label htmlFor="post_body" className="block mb-2 text-sm font-medium">Project description</label>
+          <br />
+          <label htmlFor="post_body" className="block mb-2 text-sm font-medium">
+            Project description
+          </label>
           <textarea
             id="post_body"
             rows={4}
@@ -44,17 +54,17 @@ function ProjectForm() {
             {...register('body')}
           />
           {errors.body && <p>{errors.body.message}</p>}
-          <br/>
+          <br />
           <button
-            type='submit'
-            className='transition ease-in-out grow bg-amber-600 hover:bg-red-800 text-white py-2 px-4 rounded'>
+            type="submit"
+            className="transition ease-in-out grow bg-amber-600 hover:bg-red-800 text-white py-2 px-4 rounded"
+          >
             Create
           </button>
         </form>
       )}
-
     </>
-  )
+  );
 }
 
 export default ProjectForm;

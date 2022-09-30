@@ -1,32 +1,32 @@
 import { NextAuthOptions } from 'next-auth';
-import Credentials from "next-auth/providers/credentials";
-import { verify } from "argon2";
+import Credentials from 'next-auth/providers/credentials';
+import { verify } from 'argon2';
 
-import { prisma } from "@/root/utils/prisma";
-import { loginSchema } from "@/root/schema/user.schema";
+import { prisma } from '@/root/utils/prisma';
+import { loginSchema } from '@/root/schema/user.schema';
 
 export const nextAuthOptions: NextAuthOptions = {
   providers: [
     Credentials({
-      name: "credentials",
+      name: 'credentials',
       credentials: {
         email: {
-          label: "Email",
-          type: "email",
-          placeholder: "jsmith@gmail.com",
+          label: 'Email',
+          type: 'email',
+          placeholder: 'jsmith@gmail.com',
         },
-        password: {label: "Password", type: "password"},
+        password: { label: 'Password', type: 'password' },
       },
       authorize: async (credentials, request) => {
         const creds = await loginSchema.parseAsync(credentials);
 
         const user = await prisma.user.findFirst({
-          where: {email: creds.email},
+          where: { email: creds.email },
         });
 
         if (!user) return null;
 
-        const isValidPassword = await verify(user.password, creds.password)
+        const isValidPassword = await verify(user.password, creds.password);
 
         if (!isValidPassword) return null;
 
@@ -39,7 +39,7 @@ export const nextAuthOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    jwt: async ({token, user}) => {
+    jwt: async ({ token, user }) => {
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -47,7 +47,7 @@ export const nextAuthOptions: NextAuthOptions = {
 
       return token;
     },
-    session: async ({session, token}) => {
+    session: async ({ session, token }) => {
       if (token) {
         session.id = token.id;
       }
@@ -60,7 +60,7 @@ export const nextAuthOptions: NextAuthOptions = {
   },
   secret: process.env.SECRET_JWT_KEY,
   pages: {
-    signIn: "/access-content",
-    newUser: "/signup",
+    signIn: '/access-content',
+    newUser: '/signup',
   },
-}
+};

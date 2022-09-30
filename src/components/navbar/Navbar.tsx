@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 import styles from './Navbar.module.scss';
 
@@ -11,12 +10,12 @@ const activeLink = (url: string, pathname: string): string | '' => {
 
 const Navbar = () => {
   const router = useRouter();
-  const {data: user} = useSession();
+  const { data: user } = useSession();
 
   return (
     <ul className={`${styles.navWrapper} flex space-x-5`}>
       <li>
-        <Link href='/'>
+        <Link href="/">
           <a
             role="button"
             tabIndex={-10}
@@ -27,7 +26,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link href='/projects'>
+        <Link href="/projects">
           <a
             role="button"
             tabIndex={-10}
@@ -39,7 +38,7 @@ const Navbar = () => {
       </li>
       {user && (
         <li>
-          <Link href='/dashboard'>
+          <Link href="/dashboard">
             <a
               role="button"
               tabIndex={-10}

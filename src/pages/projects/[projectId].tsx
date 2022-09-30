@@ -11,7 +11,6 @@ import { trpc } from "@/root/utils/trpc";
 import { prisma } from "@/root/utils/prisma";
 import { appRouter } from "@/root/server/routes/app.router";
 import { createContextInner } from "@/root/server/createContext";
-import { useRouter } from "next/router";
 
 export const getStaticProps = async (context: GetStaticPropsContext<{ projectId: string }>) => {
   try {
@@ -56,17 +55,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const {projectId} = props;
   const {data: user} = useSession();
-  const router = useRouter();
-
 
   const {data: project, status} = trpc.useQuery(['projects.single-project', {projectId}])
 
   if (status !== 'success') {
     // won't happen since we're using `fallback: "blocking"`
-    return <LoadingSpinner/>
-  }
-
-  if (router.isFallback) {
     return <LoadingSpinner/>
   }
 

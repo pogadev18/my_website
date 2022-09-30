@@ -15,7 +15,7 @@ function SignupPage() {
   const router = useRouter();
 
   const {mutate, error} = trpc.useMutation(['users.register-user'], {
-    onSuccess: () => router.push('/login')
+    onSuccess: () => router.push('/access-content')
   });
 
   function onSubmit(values: ISignUp) {
@@ -45,6 +45,26 @@ function SignupPage() {
         />
         <p>{errors.email && errors.email.message}</p>
         <br/>
+        <textarea
+          placeholder="Enter a description about yourself"
+          {...register("description")}
+        />
+        <p>{errors.description && errors.description.message}</p>
+        <br/>
+        <input
+          type="text"
+          placeholder="GitHub link"
+          {...register("githubLink")}
+        />
+        <p>{errors.githubLink && errors.githubLink.message}</p>
+        <br/>
+        <input
+          type="text"
+          placeholder="LinkedIn link"
+          {...register("linkedInLink")}
+        />
+        <p>{errors.linkedInLink && errors.linkedInLink.message}</p>
+        <br/>
         <input
           type="password"
           placeholder="Type your password..."
@@ -54,7 +74,7 @@ function SignupPage() {
         <button type="submit">SignUp</button>
       </form>
 
-      <Link href="/login">Login</Link>
+      <Link href="/access-content">Login</Link>
     </>
   )
 }

@@ -8,6 +8,9 @@ export const loginSchema = z.object({
 
 export const signUpSchema = loginSchema.extend({
   name: z.string().min(3).max(15),
+  description: z.string().min(10).max(1000),
+  githubLink: z.string(),
+  linkedInLink: z.string()
 });
 
 export type ILogin = z.infer<typeof loginSchema>;

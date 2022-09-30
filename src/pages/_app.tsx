@@ -6,16 +6,18 @@ import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { AppRouter } from "@/root/server/routes/app.router";
+import AppLayout from "@/root/components/layouts/appLayout";
 import { url } from "@/root/constants/url";
+
+import '@/root/styles/globals.css';
 
 function MyApp({Component, pageProps}: any) {
   return (
-    <main>
-      <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
-        <ReactQueryDevtools/>
-      </SessionProvider>
-    </main>
+    <SessionProvider session={pageProps.session}>
+      <AppLayout/>
+      <Component {...pageProps} />
+      <ReactQueryDevtools/>
+    </SessionProvider>
   )
 }
 
@@ -37,18 +39,18 @@ export default withTRPC<AppRouter>({
           }
         }
       },
-      headers() {
-        if (ctx?.req) {
-          return {
-            ...ctx.req.headers,
-            'x-ssr': '1', // requests are done on the server
-          }
-        }
-        return {}
-      },
+      // headers() {
+      //   if (ctx?.req) {
+      //     return {
+      //       ...ctx.req.headers,
+      //       'x-ssr': '1', // inform server that it's an SSR request
+      //     }
+      //   }
+      //   return {}
+      // },
       links,
       transformer: superjson,
     }
   },
-  ssr: true // tweak this if you want to use SSR or if you think is necessary
+  ssr: false // Whether tRPC should await queries when server-side rendering a page
 })(MyApp);

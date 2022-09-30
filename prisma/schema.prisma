@@ -8,13 +8,17 @@ datasource db {
 }
 
 model User {
-  id         String       @unique @default(uuid())
-  email      String       @unique
-  name       String
-  password   String
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  Post       Post[]
+  id           String   @unique @default(uuid())
+  email        String   @unique
+  name         String
+  password     String
+  description  String
+  workStatus   String   @default("busy")
+  githubLink   String   @default("https://github.com/pogadev18")
+  linkedInLink String   @default("https://www.linkedin.com/in/pogadev/")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  Post         Post[]
 }
 
 model Post {

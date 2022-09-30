@@ -1,26 +1,17 @@
 import type { NextPage } from 'next'
-import Link from "next/link";
+import Head from "next/head";
 
-import { trpc } from "@/root/utils/trpc";
-import PostsList from "@/root/components/PostsList";
-
+import PageWrapper from "@/root/components/pageWrapper/PageWrapper";
 
 const Home: NextPage = () => {
-  const {data, isLoading} = trpc.useQuery(['posts.posts'])
-
   return (
-    <div>
-      <h1>Home page</h1>
-      {isLoading && <p>loading posts...</p>}
-      {data &&
-        (
-          <>
-            <PostsList posts={data}/>
-            <Link href='/posts'>see all projects</Link>
-          </>
-        )
-      }
-    </div>
+    <PageWrapper>
+      <Head>
+        <title>PogaDev | Resume</title>
+      </Head>
+      <h1>Resume page</h1>
+      <p>resume details</p>
+    </PageWrapper>
   )
 }
 

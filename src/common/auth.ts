@@ -60,7 +60,7 @@ export const nextAuthOptions: NextAuthOptions = {
   },
   secret: process.env.SECRET_JWT_KEY,
   pages: {
-    signIn: "/login",
+    signIn: "/access-content",
     newUser: "/signup",
   },
 }

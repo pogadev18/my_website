@@ -12,5 +12,12 @@ export const signUpSchema = loginSchema.extend({
   linkedInLink: z.string(),
 });
 
+export const updateUserSchema = z
+  .object({
+    workStatus: z.string(),
+  })
+  .merge(signUpSchema);
+
 export type ILogin = z.infer<typeof loginSchema>;
 export type ISignUp = z.infer<typeof signUpSchema>;
+export type IUpdate = z.infer<typeof updateUserSchema>;

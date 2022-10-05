@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { requireAuth } from '@/root/common/requireAuth';
 import ProjectForm from '@/root/components/projectForm/ProjectForm';
 import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
+import UpdateUserInfoForm from '@/root/components/updateUserInfoForm';
 
 const Dashboard: NextPage = () => {
   const { data } = useSession();
@@ -34,6 +35,7 @@ const Dashboard: NextPage = () => {
         </section>
         <section className="my-5">
           <h3 className="text-2xl mb-5">Update personal info</h3>
+          <UpdateUserInfoForm />
           <hr className="my-10" />
         </section>
       </main>

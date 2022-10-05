@@ -1,18 +1,13 @@
 import Link from 'next/link';
+import type { Project } from '@prisma/client';
 
-export interface IProject {
-  id: string;
-  title: string;
-  body: string;
-  createdAt: Date;
-  userId: string;
+export interface IProjectsListProps {
+  projects: Project[];
 }
 
-interface IPosts {
-  projects: IProject[];
-}
+function ProjectsList(props: IProjectsListProps) {
+  const { projects } = props;
 
-function ProjectsList({ projects }: IPosts) {
   return (
     <section>
       {projects?.map(({ id, title, body, createdAt }) => {

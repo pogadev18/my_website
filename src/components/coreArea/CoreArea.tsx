@@ -1,23 +1,8 @@
-import { ReactNode } from 'react';
-
 import ProfileCard from '@/root/components/profileCard';
 import AboutMe from '@/root/components/aboutMe';
 import LoadingSpinner from '@/root/components/loadingSpinner';
 
 import { useUser } from '@/root/hooks/useUser';
-
-interface IUserProps {
-  email: string;
-  description: string;
-  githubLink: string;
-  linkedInLink: string;
-  workStatus: string;
-}
-
-// to be used in <ProfileCard> and <AboutMe>
-export interface IUser {
-  user: IUserProps | null | undefined;
-}
 
 const CoreArea = () => {
   const { user, isUserLoading, isError } = useUser();

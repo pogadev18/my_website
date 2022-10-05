@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import LoadingSpinner from '@/root/components/loadingSpinner';
 
-import { UpdatePostInput } from '@/root/schema/post.schema';
+import { UpdatePostInput } from '@/root/schema/project.schema';
 import { trpc } from '@/root/utils/trpc';
 
 interface IUpdateProjectForm {

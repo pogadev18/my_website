@@ -1,8 +1,8 @@
 import { createSSGHelpers } from '@trpc/react/ssg';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 
-import ProjectsList, { IProject } from '@/root/components/projectsList/ProjectsList';
+import ProjectsList from '@/root/components/projectsList/ProjectsList';
 import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
 import { appRouter } from '@/root/server/routes/app.router';
 import { createContextInner } from '@/root/server/createContext';
@@ -14,13 +14,14 @@ export const getStaticProps = async () => {
     ctx: await createContextInner({ session: null }),
   });
 
-  const projectsList: IProject[] = await ssg.fetchQuery('projects.projects');
+  const projectsList = await ssg.fetchQuery('projects.projects');
   await sanitisePrismaObject(projectsList);
 
   return {
     props: {
       projectsList,
     },
+    revalidate: 30,
   };
 };
 

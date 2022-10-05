@@ -2,7 +2,7 @@ import * as trpc from '@trpc/server';
 import { hash } from 'argon2';
 
 import { createRouter } from '@/root/server/createRouter';
-import { signUpSchema } from '@/root/schema/user.schema';
+import { signUpSchema, updateUserSchema } from '@/root/schema/user.schema';
 
 import { CONFLICT } from '@/root/constants/errorCodes';
 import { errorMessages } from '@/root/constants/errorMessages';
@@ -42,10 +42,24 @@ export const userRouter = createRouter()
       };
     },
   })
+  .mutation('update-user', {
+    input: updateUserSchema,
+    async resolve({ ctx, input }) {
+      // const { email, password, description, linkedInLink, githubLink, workStatus, name } = input;
+
+      const hashedPassword = await hash(input.password);
+
+      return await ctx.prisma.user.update({
+        where: { email: input.email },
+        data: { ...input, password: hashedPassword },
+      });
+    },
+  })
   .query('me', {
     async resolve({ ctx }) {
       return await ctx.prisma.user.findFirst({
         select: {
+          name: true,
           email: true,
           description: true,
           githubLink: true,

@@ -16,7 +16,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = useCallback(async (data: ILogin) => {
-    await signIn('credentials', { ...data, callbackUrl: '/dashboard' });
+    await signIn('credentials', { ...data, callbackUrl: '/' });
   }, []);
 
   return (

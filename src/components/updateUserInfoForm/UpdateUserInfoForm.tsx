@@ -36,7 +36,6 @@ function UpdateUserInfoForm() {
   });
 
   function onSubmit(values: IUpdate) {
-    console.log(values);
     updateUser(values);
     reset();
   }

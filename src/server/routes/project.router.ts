@@ -1,11 +1,15 @@
 import { createRouter } from '@/root/server/createRouter';
-import { projectSchema, singleProjectSchema, updateProjectSchema } from '@/root/schema/post.schema';
+import {
+  projectSchema,
+  singleProjectSchema,
+  updateProjectSchema,
+} from '@/root/schema/project.schema';
 
-export const postRouter = createRouter()
+export const projectRouter = createRouter()
   .mutation('create-project', {
     input: projectSchema,
     async resolve({ ctx, input }) {
-      return await ctx.prisma.post.create({
+      return await ctx.prisma.project.create({
         data: {
           ...input,
           user: {
@@ -22,7 +26,7 @@ export const postRouter = createRouter()
     input: updateProjectSchema,
     async resolve({ ctx, input }) {
       const { projectId, title, body } = input;
-      return await ctx.prisma.post.update({
+      return await ctx.prisma.project.update({
         where: { id: projectId },
         data: { title, body },
       });
@@ -31,20 +35,20 @@ export const postRouter = createRouter()
   .mutation('delete-project', {
     input: singleProjectSchema,
     async resolve({ ctx, input }) {
-      return await ctx.prisma.post.delete({
+      return await ctx.prisma.project.delete({
         where: { id: input.projectId },
       });
     },
   })
   .query('projects', {
     resolve({ ctx }) {
-      return ctx.prisma.post.findMany();
+      return ctx.prisma.project.findMany();
     },
   })
   .query('single-project', {
     input: singleProjectSchema,
     resolve({ input, ctx }) {
-      return ctx.prisma.post.findUnique({
+      return ctx.prisma.project.findUnique({
         where: {
           id: input.projectId,
         },

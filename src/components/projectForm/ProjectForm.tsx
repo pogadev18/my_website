@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import LoadingSpinner from '@/root/components/loadingSpinner';
 
-import { PostInput, projectSchema } from '@/root/schema/post.schema';
+import { PostInput, projectSchema } from '@/root/schema/project.schema';
 import { trpc } from '@/root/utils/trpc';
 
 function ProjectForm() {

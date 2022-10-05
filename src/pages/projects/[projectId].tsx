@@ -1,11 +1,6 @@
 import Error from 'next/error';
 import { useSession } from 'next-auth/react';
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from 'next';
+import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { createSSGHelpers } from '@trpc/react/ssg';
 
 import UpdateProjectForm from '@/root/components/updateProjectForm';
@@ -15,7 +10,6 @@ import { prisma } from '@/root/utils/prisma';
 import { appRouter } from '@/root/server/routes/app.router';
 import { createContextInner } from '@/root/server/createContext';
 import { sanitisePrismaObject } from '@/root/utils/sanitizePrismaObject';
-import { IProject } from '@/root/components/projectsList/ProjectsList';
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const ssg = createSSGHelpers({
@@ -25,8 +19,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
   const projectId = context?.params?.projectId as string;
 
-  const project: IProject | null = await ssg.fetchQuery('projects.single-project', { projectId });
-  await sanitisePrismaObject(project);
+  const project = await ssg.fetchQuery('projects.single-project', { projectId });
+  sanitisePrismaObject(project);
 
   return {
     props: {
@@ -36,7 +30,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const projects = await prisma.post.findMany({
+  const projects = await prisma.project.findMany({
     select: {
       id: true,
     },
@@ -51,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 

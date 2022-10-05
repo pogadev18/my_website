@@ -11,10 +11,6 @@ export const singleProjectSchema = z.object({
   projectId: z.string().uuid(),
 });
 
-export const updateProjectSchema = z.object({
-  projectId: z.string().uuid(),
-  title: z.string(),
-  body: z.string(),
-});
+export const updateProjectSchema = projectSchema.merge(singleProjectSchema);
 
 export type UpdatePostInput = z.TypeOf<typeof updateProjectSchema>;

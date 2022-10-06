@@ -26,7 +26,7 @@ const AboutMe = ({ user }: IAboutMeProps) => {
           <p>{user?.description}</p>
           <br />
           <p className="text-blue-600">
-            @&nbsp;<a href="mailto:pogadev18@gmail.com">{user?.email}</a>
+            @&nbsp;<a href={`mailto:${user?.email}`}>{user?.email}</a>
           </p>
           <ul className="flex gap-3 mt-5">
             <li>

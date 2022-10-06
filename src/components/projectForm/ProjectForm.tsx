@@ -38,7 +38,7 @@ function ProjectForm() {
             type="text"
             id="project_title"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5"
-            placeholder="post title..."
+            placeholder="Project title..."
             {...register('title')}
           />
           {errors.title && <p>{errors.title.message}</p>}
@@ -54,6 +54,18 @@ function ProjectForm() {
             {...register('body')}
           />
           {errors.body && <p>{errors.body.message}</p>}
+          <br />
+          <label htmlFor="project_img" className="block mb-2 text-sm font-medium">
+            Project image
+          </label>
+          <input
+            type="text"
+            id="project_img"
+            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5"
+            placeholder="Project image..."
+            {...register('imageUrl')}
+          />
+          {errors.imageUrl && <p>{errors.imageUrl.message}</p>}
           <br />
           <button
             type="submit"

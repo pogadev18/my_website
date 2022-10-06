@@ -10,7 +10,7 @@ function ProjectsList(props: IProjectsListProps) {
 
   return (
     <section>
-      {projects?.map(({ id, title, body, createdAt }) => {
+      {projects?.map(({ id, title, body, imageUrl, createdAt }) => {
         const date = createdAt.toString().split(' ');
 
         return (
@@ -19,6 +19,7 @@ function ProjectsList(props: IProjectsListProps) {
               <Link href={`/projects/${id}`}>{title}</Link>
             </h2>
             <p>{date[0]}</p>
+            <img src={imageUrl} alt={title} />
             <p>{body}</p>
           </article>
         );

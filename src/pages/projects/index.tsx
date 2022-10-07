@@ -7,6 +7,7 @@ import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
 import { appRouter } from '@/root/server/routes/app.router';
 import { createContextInner } from '@/root/server/createContext';
 import { sanitisePrismaObject } from '@/root/utils/sanitizePrismaObject';
+import { displayMostRecentFirst } from '@/root/utils/formatDates';
 
 export const getStaticProps = async () => {
   const ssg = createSSGHelpers({
@@ -33,7 +34,8 @@ function ProjectsPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
       <Head>
         <title>PogaDev | Projects</title>
       </Head>
-      {projectsList && <ProjectsList projects={projectsList} />}
+      <h1 className="my-12 text-gray-700 uppercase font-extrabold text-5xl">Work showcase</h1>
+      {projectsList && <ProjectsList projects={displayMostRecentFirst(projectsList)} />}
     </PageWrapper>
   );
 }

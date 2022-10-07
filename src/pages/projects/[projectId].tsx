@@ -61,6 +61,7 @@ function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
     projectId: project.id,
     title: project?.title,
     body: project?.body,
+    imageUrl: project?.imageUrl,
   };
 
   return (

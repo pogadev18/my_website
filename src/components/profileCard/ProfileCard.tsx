@@ -1,11 +1,18 @@
 import Image from 'next/image';
+import { FaBasketballBall } from 'react-icons/fa';
 
 import styles from './ProfileCard.module.scss';
 
 const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
   return (
     <article className="shadow-md rounded-xl overflow-hidden">
-      <header className={styles.header} />
+      <header className={styles.header}>
+        <h4 className={`${styles.moto} ${styles.moto1stPart}`}>From playing pro basketball</h4>
+        <h4 className={`${styles.moto} ${styles.moto2ndPart}`}>to writing code</h4>
+        <div className={styles.basketball}>
+          <FaBasketballBall fill="#ba3326" fontSize="50px" />
+        </div>
+      </header>
       <div className="pt-14 p-7 bg-white relative">
         <div className={`shadow ${styles.profileImage}`}>
           <Image
@@ -21,7 +28,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
         <p className="text-lg font-semibold">Bogdan Pogăcean</p>
         <p className="text-sm text-gray-400 mb-7">Senior Front-End Engineer</p>
         <div className="flex group">
-          <button className="transition ease-in-out grow bg-red-600 hover:bg-red-800 text-white p-3 rounded-tl-xl rounded-bl-xl">
+          <button className="transition ease-in-out grow bg-green-600 hover:bg-green-800 text-white p-3 rounded-tl-xl rounded-bl-xl">
             <a
               target="_blank"
               rel="noreferrer"
@@ -30,7 +37,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
               Download CV
             </a>
           </button>
-          <button className="bg-red-800 text-white p-3 rounded-tr-xl rounded-br-xl">
+          <button className="bg-green-500 text-white p-3 rounded-tr-xl rounded-br-xl">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"

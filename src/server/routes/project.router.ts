@@ -25,10 +25,10 @@ export const projectRouter = createRouter()
   .mutation('update-project', {
     input: updateProjectSchema,
     async resolve({ ctx, input }) {
-      const { projectId, title, body } = input;
+      const { projectId, title, body, imageUrl } = input;
       return await ctx.prisma.project.update({
         where: { id: projectId },
-        data: { title, body },
+        data: { title, body, imageUrl },
       });
     },
   })

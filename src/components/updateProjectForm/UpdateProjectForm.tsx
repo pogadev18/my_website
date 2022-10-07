@@ -48,6 +48,7 @@ const UpdateProjectForm = ({ projectId, defaultValues }: IUpdateProjectForm) => 
       projectId,
       title: values.title,
       body: values.body,
+      imageUrl: values.imageUrl,
     };
 
     updatePost(data);
@@ -56,8 +57,6 @@ const UpdateProjectForm = ({ projectId, defaultValues }: IUpdateProjectForm) => 
   const deletePostHandler = () => {
     deletePost({ projectId });
   };
-
-  // TODO: try https://github.com/jlalmes/trpc-openapi
 
   return (
     <>
@@ -85,6 +84,17 @@ const UpdateProjectForm = ({ projectId, defaultValues }: IUpdateProjectForm) => 
             className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Project description..."
             {...register('body')}
+          />
+          <br />
+          <label htmlFor="project_img" className="block mb-2 text-sm font-medium">
+            Project image
+          </label>
+          <textarea
+            id="project_img"
+            rows={4}
+            className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Project description..."
+            {...register('imageUrl')}
           />
           <div className="flex gap-3 mt-5 mb-10">
             <button

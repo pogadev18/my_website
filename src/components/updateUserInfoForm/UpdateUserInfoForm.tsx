@@ -10,13 +10,6 @@ function UpdateUserInfoForm() {
   const { user, isUserLoading } = useUser();
   const trpcContext = trpc.useContext();
 
-  const { mutate: updateUser, isLoading: isUpdatingUser } = trpc.useMutation(
-    ['users.update-user'],
-    {
-      onSuccess: async () => await trpcContext.invalidateQueries(['users.me']),
-    },
-  );
-
   const {
     handleSubmit,
     register,
@@ -35,9 +28,18 @@ function UpdateUserInfoForm() {
     },
   });
 
+  const { mutate: updateUser, isLoading: isUpdatingUser } = trpc.useMutation(
+    ['users.update-user'],
+    {
+      onSuccess: async () => {
+        await trpcContext.invalidateQueries(['users.me']);
+        reset();
+      },
+    },
+  );
+
   function onSubmit(values: IUpdate) {
     updateUser(values);
-    reset();
   }
 
   if (isUserLoading || isUpdatingUser) return <LoadingSpinner />;

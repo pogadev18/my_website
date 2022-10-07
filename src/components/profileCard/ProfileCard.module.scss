@@ -1,13 +1,44 @@
 .header {
+  position: relative;
   height: 150px;
   background: #556270; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ff6b6b, #556270); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
     #ff6b6b,
-    #556270
+    #1c1c1c
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+.moto {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 1px 0 #000
+}
+
+.moto1stPart {
+  top: 20px;
+  font-size: 22px;
+}
+
+.moto2ndPart {
+  top: 40px;
+  font-size: 28px;
+}
+
+.basketball {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+
 
 .statusPill {
   font-size: 12px;

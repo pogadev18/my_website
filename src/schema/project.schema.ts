@@ -12,6 +12,11 @@ export const singleProjectSchema = z.object({
   projectId: z.string().uuid(),
 });
 
+export const paginationSchema = z.object({
+  limit: z.number().min(1).max(100).nullish(),
+  cursor: z.string().nullish(), // <-- "cursor" needs to exist, but can be any type
+});
+
 export const updateProjectSchema = projectSchema.merge(singleProjectSchema);
 
 export type UpdatePostInput = z.TypeOf<typeof updateProjectSchema>;

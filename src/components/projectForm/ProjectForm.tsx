@@ -8,6 +8,9 @@ import { PostInput, projectSchema } from '@/root/schema/project.schema';
 import { trpc } from '@/root/utils/trpc';
 
 function ProjectForm() {
+  const trpcContext = trpc.useContext();
+  const router = useRouter();
+
   const {
     handleSubmit,
     register,
@@ -15,10 +18,12 @@ function ProjectForm() {
   } = useForm<PostInput>({
     resolver: zodResolver(projectSchema),
   });
-  const router = useRouter();
 
   const { mutate, isLoading } = trpc.useMutation(['projects.create-project'], {
-    onSuccess: ({ id }) => router.push(`/projects/${id}`),
+    onSuccess: async () => {
+      await trpcContext.invalidateQueries(['projects.projects']);
+      await router.push(`/projects`);
+    },
   });
 
   function onSubmit(values: PostInput) {

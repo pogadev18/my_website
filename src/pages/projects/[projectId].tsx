@@ -36,8 +36,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     },
   });
 
+  // generate pages at build time only for the first 5 projects
+  const projectsToBeCached = projects.slice(0, 5);
+
   // this is used in order to know how many pages needs to be SSG
-  const paths = projects.map((project: { id: string }) => ({
+  const paths = projectsToBeCached.map((project: { id: string }) => ({
     params: {
       projectId: project.id,
     },
@@ -45,7 +48,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 

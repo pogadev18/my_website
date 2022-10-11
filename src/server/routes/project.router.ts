@@ -1,5 +1,6 @@
 import { createRouter } from '@/root/server/createRouter';
 import {
+  paginationSchema,
   projectSchema,
   singleProjectSchema,
   updateProjectSchema,
@@ -41,8 +42,32 @@ export const projectRouter = createRouter()
     },
   })
   .query('projects', {
-    resolve({ ctx }) {
-      return ctx.prisma.project.findMany();
+    input: paginationSchema,
+    async resolve({ ctx, input }) {
+      const limit = input.limit ?? 6;
+      const { cursor } = input;
+
+      const projects = await ctx.prisma.project.findMany({
+        take: limit + 1, // get an extra item at the end which we'll use as next cursor
+
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy: {
+          createdAt: 'desc',
+        },
+      });
+
+      console.log('server projects:', projects.length);
+
+      let nextCursor: typeof cursor | undefined = undefined;
+      if (projects.length > limit) {
+        const nextProject = projects.pop();
+        console.log('next item!!', nextProject);
+        nextCursor = nextProject!.id;
+      }
+      return {
+        projects,
+        nextCursor,
+      };
     },
   })
   .query('single-project', {

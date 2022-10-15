@@ -28,18 +28,18 @@ const AboutMe = ({ user }: IAboutMeProps) => {
           <p className="text-blue-600">
             @&nbsp;<a href={`mailto:${user?.email}`}>{user?.email}</a>
           </p>
-          <ul className="flex gap-3 mt-5">
-            <li>
+          <section className="flex gap-3 mt-5">
+            <div>
               <a href={user?.githubLink} rel="noreferrer" target="_blank">
                 <FaGithub size="25px" />
               </a>
-            </li>
-            <li>
+            </div>
+            <div>
               <a href={user?.linkedInLink} rel="noreferrer" target="_blank">
                 <FaLinkedin size="25px" />
               </a>
-            </li>
-          </ul>
+            </div>
+          </section>
         </div>
         <Navbar />
       </>

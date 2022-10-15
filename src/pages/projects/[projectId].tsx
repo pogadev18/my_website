@@ -2,6 +2,8 @@ import Error from 'next/error';
 import { useSession } from 'next-auth/react';
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { createSSGHelpers } from '@trpc/react/ssg';
+import remarkGfm from 'remark-gfm';
+import ReactMarkdown from 'react-markdown';
 
 import UpdateProjectForm from '@/root/components/updateProjectForm';
 import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
@@ -10,6 +12,8 @@ import { prisma } from '@/root/utils/prisma';
 import { appRouter } from '@/root/server/routes/app.router';
 import { createContextInner } from '@/root/server/createContext';
 import { sanitisePrismaObject } from '@/root/utils/sanitizePrismaObject';
+import Head from 'next/head';
+import ProjectCard from '@/root/components/projectCard';
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const ssg = createSSGHelpers({
@@ -69,9 +73,11 @@ function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
     <PageWrapper>
+      <Head>
+        <title>PogaDev | {project?.title}</title>
+      </Head>
       {user && <UpdateProjectForm projectId={project.id} defaultValues={projectDefaultValues} />}
-      <h1>{project?.title}</h1>
-      <p>{project?.body}</p>
+      <ProjectCard project={project} isPreviewMode={false} />
     </PageWrapper>
   );
 }

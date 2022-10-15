@@ -56,12 +56,9 @@ export const projectRouter = createRouter()
         },
       });
 
-      console.log('server projects:', projects.length);
-
       let nextCursor: typeof cursor | undefined = undefined;
       if (projects.length > limit) {
         const nextProject = projects.pop();
-        console.log('next item!!', nextProject);
         nextCursor = nextProject!.id;
       }
       return {

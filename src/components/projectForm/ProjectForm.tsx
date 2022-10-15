@@ -51,6 +51,7 @@ function ProjectForm() {
           <label htmlFor="post_body" className="block mb-2 text-sm font-medium">
             Project description
           </label>
+
           <textarea
             id="post_body"
             rows={4}

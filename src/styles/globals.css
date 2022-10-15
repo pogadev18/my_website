@@ -1,18 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto:wght@100;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Roboto', sans-serif;
-  }
-  h1 {
-    @apply text-4xl;
-  }
+    html {
+        font-family: 'Roboto', sans-serif;
+    }
 
-  h2 {
-    @apply text-2xl;
-  }
+    p {
+        @apply mb-2;
+    }
+
+    pre {
+        background: #DFDFE3;
+        padding: 15px;
+        border-radius: 10px;
+        @apply my-5;
+    }
+
+    h1 {
+        @apply text-4xl;
+    }
+
+    h2 {
+        @apply text-3xl;
+    }
+
+    h3 {
+        @apply text-2xl my-3;
+    }
+
+    ol, ul {
+        @apply text-sm my-5 pl-10;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    ul {
+        list-style: disc;
+    }
+
+    table, th, td {
+        border: 1px solid;
+        @apply p-2 my-5;
+    }
+
+    blockquote {
+        font-size: 1.4em;
+        width: 100%;
+        @apply my-5;
+        font-style: italic;
+        color: #555555;
+        padding: 1.2em 30px 1.2em 75px;
+        border-left: 8px solid #78C0A8;
+        line-height: 1.6;
+        position: relative;
+        background: #EDEDED;
+    }
+
+    blockquote::before {
+        content: "\201C";
+        color: #78C0A8;
+        font-size: 4em;
+        position: absolute;
+        left: 10px;
+        top: -10px;
+    }
+
+    blockquote::after {
+        content: '';
+    }
+
+    blockquote span {
+        display: block;
+        color: #333333;
+        font-style: normal;
+        font-weight: bold;
+        margin-top: 1em;
+    }
 }

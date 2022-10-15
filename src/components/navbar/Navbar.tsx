@@ -13,8 +13,8 @@ const Navbar = () => {
   const { data: user } = useSession();
 
   return (
-    <ul className={`${styles.navWrapper} flex space-x-5`}>
-      <li>
+    <section className={`${styles.navWrapper} flex space-x-5`}>
+      <div>
         <Link href="/">
           <a
             role="button"
@@ -24,8 +24,8 @@ const Navbar = () => {
             Resume
           </a>
         </Link>
-      </li>
-      <li>
+      </div>
+      <div>
         <Link href="/projects">
           <a
             role="button"
@@ -35,9 +35,9 @@ const Navbar = () => {
             Projects
           </a>
         </Link>
-      </li>
+      </div>
       {user && (
-        <li>
+        <div>
           <Link href="/dashboard">
             <a
               role="button"
@@ -47,9 +47,9 @@ const Navbar = () => {
               Dashboard
             </a>
           </Link>
-        </li>
+        </div>
       )}
-    </ul>
+    </section>
   );
 };
 

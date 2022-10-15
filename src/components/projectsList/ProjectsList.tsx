@@ -11,7 +11,7 @@ function ProjectsList(props: IProjectsListProps) {
   return (
     <section className="grid grid-cols-3 gap-4">
       {projects?.map((project) => {
-        return <ProjectCard key={project.id} project={project} />;
+        return <ProjectCard isPreviewMode key={project.id} project={project} />;
       })}
     </section>
   );

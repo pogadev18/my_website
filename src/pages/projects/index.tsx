@@ -16,12 +16,14 @@ import LoadingSpinner from '@/root/components/loadingSpinner';
 //     ctx: await createContextInner({ session: null }),
 //   });
 //
-//   const projectsList = await ssg.fetchQuery('projects.projects');
+//   const projectsList = await ssg.fetchInfiniteQuery('projects.projects', { limit: 3 });
 //   await sanitisePrismaObject(projectsList);
+//
 //
 //   return {
 //     props: {
 //       projectsList,
+//       // hasNextPage
 //     },
 //     revalidate: 30,
 //   };
@@ -37,7 +39,7 @@ function ProjectsPage() {
     [
       'projects.projects',
       {
-        limit: 6,
+        limit: 3,
       },
     ],
     {
@@ -55,13 +57,28 @@ function ProjectsPage() {
       <h1 className="my-12 text-gray-700 uppercase font-extrabold text-5xl">Work showcase</h1>
       {isLoading && <LoadingSpinner />}
       {projectsList &&
-        projectsList.pages.map((data) => (
-          <ProjectsList key={data.nextCursor} projects={data.projects} />
+        projectsList.pages.map((data, idx) => (
+          <section key={idx} className="my-5">
+            <ProjectsList projects={data.projects} />
+          </section>
         ))}
       {hasNextPage && (
-        <button type="button" onClick={fetchMore}>
-          next posts
-        </button>
+        <section className="w-1/4 mx-auto flex justify-center my-10">
+          <button
+            onClick={fetchMore}
+            className="transition ease-in-out hover:underline text-grey-darkest font-bold py-4 px-4 rounded inline-flex items-center"
+          >
+            <span>show me more</span>
+            <svg
+              className="w-6 h-6 ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              fillRule="evenodd"
+              clipRule="evenodd"
+            >
+              <path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z" />
+            </svg>
+          </button>
+        </section>
       )}
     </PageWrapper>
   );

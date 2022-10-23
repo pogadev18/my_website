@@ -21,7 +21,7 @@ const Dashboard: NextPage = () => {
         <header className="flex gap-10">
           <h1 className="grow">Hello, {data?.user?.name}!</h1>
           <button
-            className="basis-3/12 transition ease-in-out grow bg-red-600 hover:bg-red-800 text-white py-2 px-10 rounded"
+            className="basis-3/12 transition ease-in-out grow bg-red-600 hover:bg-red-800 py-2 px-10 rounded"
             onClick={() => signOut({ callbackUrl: '/' })}
           >
             Logout

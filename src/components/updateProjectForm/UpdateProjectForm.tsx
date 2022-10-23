@@ -99,14 +99,14 @@ const UpdateProjectForm = ({ projectId, defaultValues }: IUpdateProjectForm) => 
           <div className="flex gap-3 mt-5 mb-10">
             <button
               type="submit"
-              className="transition ease-in-out grow bg-amber-600 hover:bg-red-800 text-white py-2 px-4 rounded"
+              className="transition ease-in-out grow bg-amber-600 hover:bg-red-800 py-2 px-4 rounded"
             >
               Update project
             </button>
             <button
               type="button"
               onClick={deletePostHandler}
-              className="transition ease-in-out grow bg-red-800 hover:bg-red-500 text-white py-2 px-4 rounded"
+              className="transition ease-in-out grow bg-red-800 hover:bg-red-500 py-2 px-4 rounded"
             >
               delete project
             </button>

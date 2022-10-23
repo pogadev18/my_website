@@ -13,7 +13,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
           <FaBasketballBall fill="#ba3326" fontSize="50px" />
         </div>
       </header>
-      <div className="pt-14 p-7 bg-white relative">
+      <div className="pt-14 p-7 bg-white dark:bg-gray-800 relative">
         <div className={`shadow ${styles.profileImage}`}>
           <Image
             priority
@@ -25,10 +25,10 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
           />
         </div>
         <span className={styles.statusPill}>{workStatus}</span>
-        <p className="text-lg font-semibold">Bogdan Pogăcean</p>
+        <p className="text-lg font-semibold text-black dark:text-white">Bogdan Pogăcean</p>
         <p className="text-sm text-gray-400 mb-7">Senior Front-End Engineer</p>
         <div className="flex group">
-          <button className="transition ease-in-out grow bg-green-600 hover:bg-green-800 text-white p-3 rounded-tl-xl rounded-bl-xl">
+          <button className="transition text-white ease-in-out grow bg-green-600 hover:bg-green-800 p-3 rounded-tl-xl rounded-bl-xl">
             <a
               target="_blank"
               rel="noreferrer"
@@ -37,7 +37,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
               Download CV
             </a>
           </button>
-          <button className="bg-green-500 text-white p-3 rounded-tr-xl rounded-br-xl">
+          <button className="bg-green-500 p-3 rounded-tr-xl rounded-br-xl">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"

@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useTheme } from 'next-themes';
+import { FaGithub, FaLinkedin, FaMoon, FaSun } from 'react-icons/fa';
 
 import Navbar from '@/root/components/navbar';
 
@@ -18,11 +19,29 @@ interface IAboutMeProps {
 }
 
 const AboutMe = ({ user }: IAboutMeProps) => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  console.log('theme', theme);
+
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
   return (
-    <section className={`${styles.aboutMe} shadow-md rounded-xl p-7 pb-4`}>
+    <section
+      className={`${styles.aboutMe} shadow-md rounded-xl p-7 pb-4 text-black dark:text-white dark:bg-gray-800`}
+    >
       <>
-        <h2>About me</h2>
-        <div className="text-gray-600 my-5">
+        <div className="flex justify-between items-center">
+          <h2 className="text">About me</h2>
+          {currentTheme === 'dark' ? (
+            <button onClick={() => setTheme('light')} type="button">
+              <FaSun />
+            </button>
+          ) : (
+            <button onClick={() => setTheme('dark')} type="button">
+              <FaMoon />
+            </button>
+          )}
+        </div>
+        <div className="my-5">
           <p>{user?.description}</p>
           <br />
           <p className="text-blue-600">

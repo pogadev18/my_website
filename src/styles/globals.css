@@ -8,6 +8,11 @@
 @layer base {
     html {
         font-family: 'Roboto', sans-serif;
+        @apply text-black dark:text-white
+    }
+
+    body {
+       @apply  bg-white dark:bg-gray-900;
     }
 
     p {

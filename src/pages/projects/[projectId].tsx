@@ -2,8 +2,6 @@ import Error from 'next/error';
 import { useSession } from 'next-auth/react';
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { createSSGHelpers } from '@trpc/react/ssg';
-import remarkGfm from 'remark-gfm';
-import ReactMarkdown from 'react-markdown';
 
 import UpdateProjectForm from '@/root/components/updateProjectForm';
 import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
@@ -66,9 +64,9 @@ function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
 
   const projectDefaultValues = {
     projectId: project.id,
-    title: project?.title,
-    body: project?.body,
-    imageUrl: project?.imageUrl,
+    title: project.title,
+    body: project.body,
+    imageUrl: project.imageUrl,
   };
 
   return (

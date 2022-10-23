@@ -148,7 +148,7 @@ function UpdateUserInfoForm() {
         </div>
         <button
           type="submit"
-          className="transition ease-in-out grow bg-amber-600 hover:bg-red-800 text-white py-2 px-4 rounded"
+          className="transition ease-in-out grow bg-amber-600 hover:bg-red-800 py-2 px-4 rounded"
         >
           Update info
         </button>

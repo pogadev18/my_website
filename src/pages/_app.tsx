@@ -1,4 +1,5 @@
 import { withTRPC } from '@trpc/next';
+import { ThemeProvider } from 'next-themes';
 import superjson from 'superjson';
 import { SessionProvider } from 'next-auth/react';
 import { loggerLink } from '@trpc/client/links/loggerLink';
@@ -14,9 +15,11 @@ import '@/root/styles/globals.css';
 function MyApp({ Component, pageProps }: any) {
   return (
     <SessionProvider session={pageProps.session}>
-      <AppLayout />
-      <Component {...pageProps} />
-      <ReactQueryDevtools />
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <AppLayout />
+        <Component {...pageProps} />
+        <ReactQueryDevtools />
+      </ThemeProvider>
     </SessionProvider>
   );
 }

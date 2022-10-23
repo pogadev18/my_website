@@ -5,7 +5,7 @@ import styles from './ProfileCard.module.scss';
 
 const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
   return (
-    <article className="shadow-md rounded-xl overflow-hidden">
+    <article className="overflow-hidden">
       <header className={styles.header}>
         <h4 className={`${styles.moto} ${styles.moto1stPart}`}>From playing pro basketball</h4>
         <h4 className={`${styles.moto} ${styles.moto2ndPart}`}>to writing code</h4>
@@ -13,7 +13,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
           <FaBasketballBall fill="#ba3326" fontSize="50px" />
         </div>
       </header>
-      <div className="pt-14 p-7 bg-white dark:bg-gray-800 relative">
+      <div className="pt-14 p-7 relative">
         <div className={`shadow ${styles.profileImage}`}>
           <Image
             priority

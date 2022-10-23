@@ -15,10 +15,10 @@ const CoreArea = () => {
 
   return (
     <section className="grid gap-5 lg:grid-cols-3">
-      <section className="left-column rounded-xl space-y-5">
+      <section className="left-column shadow-md rounded-xl space-y-5 bg-white dark:bg-gray-800">
         <ProfileCard workStatus={user?.workStatus} />
       </section>
-      <section className="right-column rounded-xl space-y-5 lg:col-span-2">
+      <section className="right-column shadow-md rounded-xl space-y-5 lg:col-span-2 bg-white dark:bg-gray-800">
         <AboutMe user={user} />
       </section>
     </section>

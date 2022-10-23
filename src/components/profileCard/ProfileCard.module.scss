@@ -25,6 +25,8 @@
 
 .header {
   position: relative;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
   height: 150px;
   background: #556270; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ff6b6b, #556270); /* Chrome 10-25, Safari 5.1-6 */

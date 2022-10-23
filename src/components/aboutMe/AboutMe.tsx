@@ -25,9 +25,7 @@ const AboutMe = ({ user }: IAboutMeProps) => {
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
   return (
-    <section
-      className={`${styles.aboutMe} shadow-md rounded-xl p-7 pb-4 text-black dark:text-white dark:bg-gray-800`}
-    >
+    <section className={`${styles.aboutMe} p-7 pb-4 text-black dark:text-white`}>
       <>
         <div className="flex justify-between items-center">
           <h2 className="text">About me</h2>

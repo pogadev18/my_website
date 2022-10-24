@@ -5,7 +5,7 @@ import styles from './AboutMe.module.scss';
 
 const AboutMe = ({ user }: ICoreAreaUserProps) => {
   return (
-    <section className={`${styles.aboutMe} p-7 pb-4 text-black dark:text-white`}>
+    <section className={`${styles.aboutMe} sm:p-7 p-4 text-black dark:text-white`}>
       <>
         <div className="flex justify-between items-center">
           <h2 className="text">About me</h2>

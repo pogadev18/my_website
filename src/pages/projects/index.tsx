@@ -3,7 +3,6 @@
 import Head from 'next/head';
 
 import ProjectsList from '@/root/components/projectsList/ProjectsList';
-import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
 // import { appRouter } from '@/root/server/routes/app.router';
 // import { createContextInner } from '@/root/server/createContext';
 // import { sanitisePrismaObject } from '@/root/utils/sanitizePrismaObject';
@@ -50,7 +49,7 @@ function ProjectsPage() {
   const fetchMore = () => fetchNextPage();
 
   return (
-    <PageWrapper>
+    <>
       <Head>
         <title>PogaDev | Projects</title>
       </Head>
@@ -96,7 +95,7 @@ function ProjectsPage() {
           </section>
         )}
       </section>
-    </PageWrapper>
+    </>
   );
 }
 

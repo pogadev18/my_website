@@ -2,6 +2,10 @@
   position: relative;
   border-bottom: 1px solid #ccc;
 
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
+
   &:last-child {
     padding-bottom: 0;
     border-bottom: 0;

@@ -13,7 +13,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
           <FaBasketballBall fill="#ba3326" fontSize="50px" />
         </div>
       </header>
-      <div className="pt-14 p-7 relative">
+      <div className="pt-14 sm:p-7 sm:pt-14 p-4 relative">
         <div className={`shadow ${styles.profileImage}`}>
           <Image
             priority

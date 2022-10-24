@@ -16,8 +16,9 @@ function MyApp({ Component, pageProps }: any) {
   return (
     <SessionProvider session={pageProps.session}>
       <ThemeProvider attribute="class" defaultTheme="dark">
-        <AppLayout />
-        <Component {...pageProps} />
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
         <ReactQueryDevtools />
       </ThemeProvider>
     </SessionProvider>

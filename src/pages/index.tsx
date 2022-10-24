@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { createSSGHelpers } from '@trpc/react/ssg';
 
-import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
 import JobCard from '@/root/components/jobCard';
 import MyInfo from '@/root/components/coreArea';
 
@@ -31,19 +30,19 @@ function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { jobs, user } = props;
 
   return (
-    <PageWrapper>
+    <>
       <Head>
         <title>PogaDev | Resume</title>
       </Head>
       <MyInfo user={user} />
 
-      <section className="dark:bg-gray-800 p-7 rounded-xl shadow">
+      <section className="dark:bg-gray-800 sm:p-7 p-4 rounded-xl shadow">
         <h1 className="text-gray-700 dark:text-white font-bold mb-10 text-5xl">Resume</h1>
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}
       </section>
-    </PageWrapper>
+    </>
   );
 }
 

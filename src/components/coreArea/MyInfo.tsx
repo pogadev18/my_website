@@ -16,7 +16,7 @@ export interface ICoreAreaUserProps {
 
 const MyInfo = ({ user }: ICoreAreaUserProps) => {
   return (
-    <section className="grid gap-5 lg:grid-cols-3 mb-10">
+    <section className="grid gap-5 lg:grid-cols-3 mb-5 sm:mb-10">
       <section className="left-column shadow rounded-xl space-y-5 bg-white dark:bg-gray-800">
         <ProfileCard workStatus={user?.workStatus} />
       </section>

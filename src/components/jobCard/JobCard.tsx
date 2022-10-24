@@ -28,7 +28,7 @@ const JobCard = ({ job }: IJobCard) => {
       </div>
 
       <div className="job-details w-full">
-        <header className="flex justify-between">
+        <header className="flex justify-between flex-col lg:flex-row">
           <div>
             <p className="font-bold">{position}</p>
             <div className="text-sm text-gray-500 dark:text-gray-400 flex gap-5">
@@ -43,8 +43,10 @@ const JobCard = ({ job }: IJobCard) => {
             </div>
           </div>
 
-          <div className="text-right text-gray-500 dark:text-gray-400 text-sm">
-            <p className="bg-blue-800 px-2 text-white rounded-md inline-block">{commitment}</p>
+          <div className="text-left lg:text-right text-gray-500 dark:text-gray-400 text-sm">
+            <p className="bg-blue-800 px-2 text-white rounded-md inline-block my-3 lg:my-0 lg:mb-1">
+              {commitment}
+            </p>
             <p className="flex gap-1 items-center m-0">
               <FaRegCalendarAlt />
               {startDate} - {endDate}

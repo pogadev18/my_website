@@ -4,7 +4,6 @@ import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from '
 import { createSSGHelpers } from '@trpc/react/ssg';
 
 import UpdateProjectForm from '@/root/components/updateProjectForm';
-import PageWrapper from '@/root/components/pageWrapper/PageWrapper';
 
 import { prisma } from '@/root/utils/prisma';
 import { appRouter } from '@/root/server/routes/app.router';
@@ -70,13 +69,13 @@ function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   };
 
   return (
-    <PageWrapper>
+    <>
       <Head>
         <title>PogaDev | {project?.title}</title>
       </Head>
       {user && <UpdateProjectForm projectId={project.id} defaultValues={projectDefaultValues} />}
       <ProjectCard project={project} isPreviewMode={false} />
-    </PageWrapper>
+    </>
   );
 }
 

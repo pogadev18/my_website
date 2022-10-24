@@ -15,7 +15,7 @@ const JobCard = ({ job }: IJobCard) => {
     job;
 
   return (
-    <div className={`${styles.job} flex gap-5 mb-10 pb-10`}>
+    <div className={`${styles.job} flex gap-5 mb-10 pb-10 text-black dark:text-white`}>
       <div className="company-logo">
         <Image
           priority
@@ -31,7 +31,7 @@ const JobCard = ({ job }: IJobCard) => {
         <header className="flex justify-between">
           <div>
             <p className="font-bold">{position}</p>
-            <div className="text-sm text-gray-500 flex gap-5">
+            <div className="text-sm text-gray-500 dark:text-gray-400 flex gap-5">
               <p className="flex gap-1 items-center m-0">
                 <FaBriefcase />
                 {companyName}
@@ -43,7 +43,7 @@ const JobCard = ({ job }: IJobCard) => {
             </div>
           </div>
 
-          <div className="text-right text-gray-500 text-sm">
+          <div className="text-right text-gray-500 dark:text-gray-400 text-sm">
             <p className="bg-blue-800 px-2 text-white rounded-md inline-block">{commitment}</p>
             <p className="flex gap-1 items-center m-0">
               <FaRegCalendarAlt />

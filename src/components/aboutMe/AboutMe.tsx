@@ -1,7 +1,4 @@
-import { useTheme } from 'next-themes';
-import { FaGithub, FaLinkedin, FaMoon, FaSun } from 'react-icons/fa';
-
-import Navbar from '@/root/components/navbar';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import styles from './AboutMe.module.scss';
 
@@ -19,30 +16,16 @@ interface IAboutMeProps {
 }
 
 const AboutMe = ({ user }: IAboutMeProps) => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  console.log('theme', theme);
-
-  const currentTheme = theme === 'system' ? systemTheme : theme;
-
   return (
     <section className={`${styles.aboutMe} p-7 pb-4 text-black dark:text-white`}>
       <>
         <div className="flex justify-between items-center">
           <h2 className="text">About me</h2>
-          {currentTheme === 'dark' ? (
-            <button onClick={() => setTheme('light')} type="button">
-              <FaSun />
-            </button>
-          ) : (
-            <button onClick={() => setTheme('dark')} type="button">
-              <FaMoon />
-            </button>
-          )}
         </div>
         <div className="my-5">
           <p>{user?.description}</p>
           <br />
-          <p className="text-blue-600">
+          <p className="text-blue-600 dark:text-blue-300">
             @&nbsp;<a href={`mailto:${user?.email}`}>{user?.email}</a>
           </p>
           <section className="flex gap-3 mt-5">
@@ -58,7 +41,6 @@ const AboutMe = ({ user }: IAboutMeProps) => {
             </div>
           </section>
         </div>
-        <Navbar />
       </>
     </section>
   );

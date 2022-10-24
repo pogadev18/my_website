@@ -23,7 +23,7 @@ function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
       <Head>
         <title>PogaDev | Resume</title>
       </Head>
-      <h1 className="text-gray-700 font-bold mb-10 text-5xl">Resume</h1>
+      <h1 className="text-gray-700 dark:text-white font-bold mb-10 text-5xl">Resume</h1>
       <section>
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} />

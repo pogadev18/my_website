@@ -54,7 +54,7 @@ function ProjectsPage() {
       <Head>
         <title>PogaDev | Projects</title>
       </Head>
-      <h1 className="text-gray-700 font-bold mb-10 text-5xl">My Work</h1>
+      <h1 className="text-gray-700 font-bold mb-10 text-5xl dark:text-white">My Work</h1>
       {isLoading && <LoadingSpinner />}
       {projectsList &&
         projectsList.pages.map((data, idx) => (

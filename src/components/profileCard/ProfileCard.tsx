@@ -38,7 +38,7 @@ const ProfileCard = ({ workStatus }: { workStatus: string | undefined }) => {
             </a>
           </button>
           <button className="bg-green-500 p-3 rounded-tr-xl rounded-br-xl">
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

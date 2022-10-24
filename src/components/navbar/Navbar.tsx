@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="w-full relative text-black dark:text-white rounded-xl dark:bg-gray-800 shadow mb-10">
+      <nav className="mx-auto max-w-6xl relative text-black dark:text-white rounded-xl dark:bg-gray-800 shadow">
         <div className="px-7 mx-auto md:items-center md:flex">
           <div>
             <div className="flex items-center justify-between md:block">

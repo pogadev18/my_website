@@ -4,9 +4,7 @@ import styles from './PageWrapper.module.scss';
 
 const PageWrapper = ({ children }: { children: ReactNode }) => {
   return (
-    <section
-      className={`${styles.pageWrapper} my-10 shadow-md rounded-xl p-7 mx-auto max-w-6xl bg-white dark:bg-gray-800`}
-    >
+    <section className={`${styles.pageWrapper} rounded-xl mx-auto max-w-6xl mt-10`}>
       {children}
     </section>
   );

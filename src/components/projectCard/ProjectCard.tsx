@@ -55,7 +55,7 @@ const ProjectCard = ({ project, isPreviewMode }: IProjectCardProps) => {
 
   return (
     <article
-      className={`${styles.projectWrapper} relative bg-white rounded-lg border border-gray-200 shadow-md`}
+      className={`${styles.projectWrapper} relative bg-gray-50 dark:bg-gray-900 dark:text-white rounded-xl`}
     >
       {isPreviewMode ? (
         <Link href={`/projects/${id}`}>
@@ -83,23 +83,23 @@ const ProjectCard = ({ project, isPreviewMode }: IProjectCardProps) => {
         {isPreviewMode ? (
           <Link href={`/projects/${id}`}>
             <a>
-              <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-black">
+              <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
                 {title}
               </h5>
             </a>
           </Link>
         ) : (
-          <h1 className="mb-2 font-bold tracking-tight text-black">{title}</h1>
+          <h1 className="mb-2 font-bold tracking-tight text-black dark:text-white">{title}</h1>
         )}
 
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-200">
           {month} {dayOfTheMonth}, {year}
         </p>
         {isPreviewMode && (
           <button
             type="button"
             onClick={handleReadMore}
-            className="inline-flex items-center py-2 text-sm font-medium text-center text-black rounded-lg hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300"
+            className="inline-flex items-center py-2 text-sm font-medium text-center text-black dark:text-white rounded-lg hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300"
           >
             view more
             <svg

@@ -1,21 +1,9 @@
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { ICoreAreaUserProps } from '@/root/components/coreArea/MyInfo';
 
 import styles from './AboutMe.module.scss';
 
-// created this custom interface instead of the one from prisma client, I need just these values
-interface IUser {
-  email: string;
-  description: string;
-  githubLink: string;
-  linkedInLink: string;
-  workStatus: string;
-}
-
-interface IAboutMeProps {
-  user: IUser | undefined | null;
-}
-
-const AboutMe = ({ user }: IAboutMeProps) => {
+const AboutMe = ({ user }: ICoreAreaUserProps) => {
   return (
     <section className={`${styles.aboutMe} p-7 pb-4 text-black dark:text-white`}>
       <>

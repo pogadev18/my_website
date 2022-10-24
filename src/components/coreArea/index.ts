@@ -1,3 +1,3 @@
-import CoreArea from './CoreArea';
+import MyInfo from './MyInfo';
 
-export default CoreArea;
+export default MyInfo;

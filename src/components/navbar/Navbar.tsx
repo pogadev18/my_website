@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaMoon, FaSun, FaGripLines } from 'react-icons/fa';
 import styles from './Navbar.module.scss';
 
 const navigation = [
@@ -25,6 +25,8 @@ const Navbar = () => {
   const handleMobileNavigation = () => {
     if (navbar) setNavbar(!navbar);
   };
+
+  console.log(currentTheme);
 
   return (
     <nav className="my-5 lg:my-10 relative text-black dark:text-white rounded-xl dark:bg-gray-800 shadow">
@@ -59,20 +61,7 @@ const Navbar = () => {
                     />
                   </svg>
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-black dark:text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
+                  <FaGripLines className="text-black dark:text-white" size="20px" />
                 )}
               </button>
             </div>

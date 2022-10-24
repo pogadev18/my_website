@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
+import dynamic from 'next/dynamic';
 
-import Navbar from '@/root/components/navbar';
+const Navbar = dynamic(() => import('@/root/components/navbar'), { ssr: false });
 
 import styles from './AppLayout.module.scss';
 
